@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
-import { AuthService } from './auth/auth.guard'; // Assuming AuthService contains the canActivate function
+import { AuthService } from './auth/auth.guard'; 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
