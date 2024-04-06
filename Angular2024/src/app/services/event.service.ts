@@ -32,6 +32,11 @@ export class EventService {
       );
   }
 
+  //get single event
+  getEventById(id: string) {
+    return this.firestore.collection('events').doc<Event>(id).valueChanges();
+  }
+
   // Update an event
   updateEvent(eventId: string, event: Event) {
     return this.firestore.doc(`events/${eventId}`).update(event);

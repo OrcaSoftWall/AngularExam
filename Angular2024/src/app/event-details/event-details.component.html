@@ -1,2 +1,38 @@
-<app-nav />
-<h1>EVENTS</h1>
+<div class="sticky">
+  <app-nav />
+</div>
+
+<div *ngIf="event; else loading">
+  <h2>{{ event.title }}</h2>
+  <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  <p><strong>Description:</strong> {{ event.description }}</p>
+  <!-- If you're storing photoURLs and want to display an event image -->
+  <img
+    *ngIf="event.photoURL"
+    [src]="event.photoURL"
+    alt="Event Photo"
+    class="event-photo"
+  />
+
+  <!-- Comments Section -->
+  <!-- <div class="comments-section">
+      <h3>Comments</h3>
+      <form (ngSubmit)="submitComment()">
+        <textarea [(ngModel)]="commentText" name="comment" required placeholder="Write a comment..."></textarea>
+        <button type="submit">Post Comment</button>
+      </form> -->
+
+  <!-- <div class="comment" *ngFor="let comment of comments">
+        <p><strong>{{comment.authorName}}:</strong> {{comment.text}}</p>
+        <small>{{comment.timestamp | date:'short'}}</small> -->
+  <!-- Edit and Delete Buttons (shown conditionally if the user owns the comment) -->
+  <!-- <button *ngIf="comment.authorId === currentUserUid" (click)="editComment(comment.id)">Edit</button>
+        <button *ngIf="comment.authorId === currentUserUid" (click)="deleteComment(comment.id)">Delete</button>
+      </div>
+    </div> -->
+</div>
+
+<ng-template #loading>
+  <p>Loading event details...</p>
+</ng-template>
