@@ -1,2 +1,13 @@
-<p>header works!</p>
-<app-nav />
+<header>
+  <nav>
+    <button type="button" (click)="toggle()">Toggle Open/Close</button>
+  </nav>
+  <img
+    (click)="toggle()"
+    [@openClose]="isOpen ? 'open' : 'closed'"
+    class="open-close-container"
+    src="https://as1.ftcdn.net/v2/jpg/01/91/54/54/1000_F_191545466_EWytxrAb3h1vYjJ0vvvJzsWMca0ZNyrR.jpg"
+    alt="Wedding altar"
+  />
+  <h1>Love is in the air</h1>
+</header>

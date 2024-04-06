@@ -12,17 +12,11 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuardService.prototype.canActivate],
-  },
-  {
-    path: 'event-details',
-    component: EventDetailsComponent,
-    canActivate: [AuthGuardService.prototype.canActivate],
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'event-details', component: EventDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'logout', component: LogoutComponent },
+  { path: '**', redirectTo: '/404' },
+  // { path: '404', component: ErrorComponent },
 ];
 
 @NgModule({

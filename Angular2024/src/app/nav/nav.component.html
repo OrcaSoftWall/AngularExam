@@ -1,10 +1,9 @@
 <nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/register">Register</a>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/event-details">Events</a>
-    <a routerLink="/logout">Logout</a>
-    <!-- Add other navigation links as needed -->
-  </nav>
-  
+  <a routerLink="/">Home</a>
+  <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+  <a routerLink="/register">Register</a>
+  <a *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</a>
+  <a *ngIf="isLoggedIn" routerLink="/event-details">Events</a>
+  <a *ngIf="isLoggedIn" routerLink="/logout">Logout</a>
+  <!-- Add other navigation links as needed -->
+</nav>

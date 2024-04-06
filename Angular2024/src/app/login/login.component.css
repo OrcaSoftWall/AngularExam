@@ -1,0 +1,7 @@
+.hide {
+    display:block;
+    width: 0;
+    height: 0;
+    background: red;
+    transition: width 2s;
+}
