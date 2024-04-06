@@ -5,7 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
-import { AuthService } from './auth/auth.guard'; 
+import { AuthGuardService } from './auth/auth.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,17 +15,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthService.prototype.canActivate],
+    canActivate: [AuthGuardService.prototype.canActivate],
   },
   {
     path: 'event-details',
     component: EventDetailsComponent,
-    canActivate: [AuthService.prototype.canActivate],
+    canActivate: [AuthGuardService.prototype.canActivate],
   },
+  { path: 'logout', component: LogoutComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

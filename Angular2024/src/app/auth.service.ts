@@ -13,10 +13,10 @@ export class AuthService {
     const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
   if (result.user) {
     await result.user.updateProfile({
-      displayName: "Your Name", // Or any other name you gather during registration
+      displayName: "1", 
       // photoURL: "https://example.com/photo.jpg"
     });
-    console.log('User profile updated', result.user);
+    console.log('User profile registered: ', result.user);
   }
   this.router.navigate(['/dashboard']);
   return result;
@@ -28,6 +28,7 @@ export class AuthService {
   }
 
   async logout() {
-    return await this.afAuth.signOut();
+    await this.afAuth.signOut();
+    this.router.navigate(['/login']);
   }
 }
