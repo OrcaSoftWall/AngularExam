@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Event } from '../models/event.model'; // Adjust path as needed
-
+import { Event } from '../models/event.model';
+import { map } from 'rxjs/operators';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService {
   constructor(private firestore: AngularFirestore) {}
@@ -14,8 +14,22 @@ export class EventService {
   }
 
   // Retrieve all events
+  // getEvents() {
+  //   return this.firestore.collection('events').snapshotChanges();
+  // }
   getEvents() {
-    return this.firestore.collection('events').snapshotChanges();
+    return this.firestore
+      .collection<Event>('events')
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as Event;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
   }
 
   // Update an event

@@ -23,7 +23,6 @@ export class RegisterComponent {
       const { email, password } = this.registerForm.value;
       this.authService.register(email, password).then(() => {
         console.log('Registration successful');
-        // Navigate to dashboard or login page
         this.router.navigate(['/dashboard']);
       }).catch(error => {
         console.error('Registration failed', error);

@@ -1,2 +1,17 @@
 <app-nav />
 <h1>DASHBOARD</h1>
+<!-- In dashboard.component.html -->
+<div class="row">
+  <div class="col-sm-4" *ngFor="let event of events">
+    <div class="card">
+      <img class="card-img-top" [src]="event.photoURL" alt="Event image" />
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">{{ event.description | slice : 0 : 100 }}...</p>
+        <a [routerLink]="['/event-details', event.id]" class="btn btn-primary"
+          >Details</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

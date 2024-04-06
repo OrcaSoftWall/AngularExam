@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
+import { AddEventComponent } from './add-event/add-event.component';
 import { AuthGuardService } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
-  { path: 'event-details', component: EventDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'add-event', component: AddEventComponent },
   { path: '**', redirectTo: '/404' },
   // { path: '404', component: ErrorComponent },
 ];
