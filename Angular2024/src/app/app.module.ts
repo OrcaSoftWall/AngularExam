@@ -19,7 +19,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { LogoutComponent } from './logout/logout.component';
     HeaderComponent,
     FooterComponent,
     MainComponent,
-    LogoutComponent
   ],
   imports: [
     BrowserModule,

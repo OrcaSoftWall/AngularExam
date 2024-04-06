@@ -1,9 +1,19 @@
-<nav>
+<!-- <nav>
   <a routerLink="/">Home</a>
   <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
   <a routerLink="/register">Register</a>
   <a *ngIf="isLoggedIn" routerLink="/dashboard">Dashboard</a>
   <a *ngIf="isLoggedIn" routerLink="/event-details">Events</a>
   <a *ngIf="isLoggedIn" routerLink="/logout">Logout</a>
-  <!-- Add other navigation links as needed -->
-</nav>
+</nav> -->
+
+
+<!-- In nav.component.html -->
+<nav>
+    <a routerLink="/">Home</a>
+    <a *ngIf="!(userService.isLogged | async)" routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+    <a *ngIf="(userService.isLogged | async)" routerLink="/dashboard">Dashboard</a>
+    <a *ngIf="(userService.isLogged | async)" routerLink="/event-details">Events</a>
+    <a *ngIf="(userService.isLogged | async)" (click)="userService.logout()">Logout</a>
+  </nav>
