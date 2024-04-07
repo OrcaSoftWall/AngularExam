@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Event } from '../models/event.model';
 import { Comment } from '../models/comment.model';
 import { map } from 'rxjs/operators';
+import firebase from 'firebase/compat/app';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -78,5 +80,13 @@ export class EventService {
       .collection('comments')
       .doc(commentId)
       .delete();
+  }
+
+
+  convertTimestampToDate(timestamp: firebase.firestore.Timestamp | Date): Date {
+    if (timestamp instanceof firebase.firestore.Timestamp) {
+      return timestamp.toDate();
+    }
+    return timestamp;
   }
 }

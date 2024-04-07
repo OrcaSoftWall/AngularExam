@@ -27,7 +27,10 @@ export class AuthService {
     {
       // const { email, password, name, attending, group, accomodation } = formData;
       try {
-        const userCredential = await this.afAuth.createUserWithEmailAndPassword(          email,          password        );
+        const userCredential = await this.afAuth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
         const uid = userCredential.user?.uid;
 
         // Construct the guest object
@@ -66,14 +69,20 @@ export class AuthService {
       switchMap((user) => {
         if (user) {
           return this.firestore
-            .collection('users')
+            .collection('guests')
             .doc(user.uid)
             .valueChanges()
-            .pipe(map((profile: any) => profile?.userName || null));
+            .pipe(map((profile: any) => profile?.name || null));
         } else {
           return of(null);
         }
       })
     );
+  }
+
+  currentUser$: Observable<firebase.User | null> = this.afAuth.authState;
+
+  getCurrentUserId(): Observable<string | null> {
+    return this.afAuth.authState.pipe(map((user) => (user ? user.uid : null)));
   }
 }

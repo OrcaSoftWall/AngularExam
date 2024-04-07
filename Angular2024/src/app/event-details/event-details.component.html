@@ -2,7 +2,7 @@
   <app-nav />
 </div>
 
-<div *ngIf="event; else loading">
+<div class="card" *ngIf="event; else loading">
   <h2>{{ event.title }}</h2>
   <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
   <p><strong>Location:</strong> {{ event.location }}</p>
@@ -32,7 +32,7 @@
       <p>
         <strong>{{ comment.authorName }}:</strong> {{ comment.text }}
       </p>
-      <small>{{ comment.timestamp | date : "short" }}</small>
+      <small>{{ $any(comment).timestamp | date: 'short' }}</small>
 
       <button
         *ngIf="comment.authorId === currentUserId"

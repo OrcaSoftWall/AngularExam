@@ -32,8 +32,11 @@ export class EventDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getCurrentUserName().subscribe((userName) => {
-      this.currentUserName = userName;
+    this.authService.getCurrentUserId().subscribe(userId => {
+      this.currentUserId = userId;
+    });
+    this.authService.getCurrentUserName().subscribe((name) => {
+      this.currentUserName = name;
     });
     this.eventId = this.route.snapshot.paramMap.get('id'); // Retrieve the event ID from the route
     if (this.eventId) {
@@ -41,13 +44,23 @@ export class EventDetailsComponent implements OnInit {
         this.event = event; // Assign the fetched event to your component property
       });
       // Fetch comments for the event
+      // this.eventService.getComments(this.eventId).subscribe((comments) => {
+      //   this.comments = comments;
+      // });
       this.eventService.getComments(this.eventId).subscribe((comments) => {
-        this.comments = comments;
+        this.comments = comments.map(comment => ({
+          ...comment,
+          // Ensure the conversion method updates the type or is recognized as always returning a Date
+          timestamp: this.eventService.convertTimestampToDate(comment.timestamp) as Date
+        }));
       });
     }
   }
 
   submitComment(): void {
+    console.log("Attempting to submit comment:", this.commentText);
+    console.log("Current User ID:", this.currentUserId);
+    console.log("Current User Name:", this.currentUserName);
     if (
       this.eventId &&
       this.commentText.trim() &&
