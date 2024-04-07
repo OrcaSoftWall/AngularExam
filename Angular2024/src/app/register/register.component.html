@@ -5,10 +5,10 @@
     <label for="email">Email:</label>
     <input type="email" formControlName="email" id="email" />
     <!-- Display errors -->
-    <div *ngIf="registerForm.get('email')?.errors?.['required']">
+    <div  class="alert" *ngIf="registerForm.get('email')?.errors?.['required']">
       Email is required.
     </div>
-    <div *ngIf="registerForm.get('email')?.errors?.['email']">
+    <div  class="alert" *ngIf="registerForm.get('email')?.errors?.['email']">
       Not a valid email.
     </div>
   </div>
@@ -16,10 +16,10 @@
     <label for="password">Password:</label>
     <input type="password" formControlName="password" id="password" />
     <!-- Display errors -->
-    <div *ngIf="registerForm.get('password')?.errors?.['required']">
+    <div  class="alert" *ngIf="registerForm.get('password')?.errors?.['required']">
       Password is required.
     </div>
-    <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+    <div class="alert" *ngIf="registerForm.get('password')?.errors?.['minlength']">
       Password must be at least 6 characters.
     </div>
     <div>
@@ -32,7 +32,7 @@
     </div>
     <div>
       <label for="group">Number of people:</label>
-    <input type="number" formControlName="group" min="1" value="1"  step="1" />
+    <input type="number" formControlName="group" min="1" max="15" value="1" step="1" />
     </div>
     <div>
       <label for="accomodation">Accomodation:</label>

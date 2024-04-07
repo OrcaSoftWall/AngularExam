@@ -1,0 +1,75 @@
+/* register.component.css */
+
+h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+  }
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="number"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't increase the input's width */
+  }
+  
+  input[type="checkbox"] {
+    width: auto;
+    margin-top: 2px;
+  }
+  
+  /* Style for displaying input errors */
+  div *ngIf {
+    color: #d9534f; /* Bootstrap 'danger' color */
+    font-size: 0.9rem;
+  }
+
+  div .alert {
+    color: #d9534f; /* Bootstrap 'danger' color */
+    font-size: 0.9rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Bootstrap 'primary' color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* A darker shade of the primary color */
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

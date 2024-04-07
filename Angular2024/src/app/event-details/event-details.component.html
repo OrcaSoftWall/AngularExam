@@ -4,16 +4,20 @@
 
 <div class="card" *ngIf="event; else loading">
   <h2>{{ event.title }}</h2>
-  <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
-  <p><strong>Location:</strong> {{ event.location }}</p>
-  <p><strong>Description:</strong> {{ event.description }}</p>
-  <!-- If you're storing photoURLs and want to display an event image -->
-  <img
-    *ngIf="event.photoURL"
-    [src]="event.photoURL"
-    alt="Event Photo"
-    class="event-photo"
-  />
+  <div class="card-event">
+    <div class="card-event-info">
+      <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
+      <p><strong>Location:</strong> {{ event.location }}</p>
+      <p><strong>Description:</strong> {{ event.description }}</p>
+    </div>
+    <!-- If you're storing photoURLs and want to display an event image -->
+    <img
+      *ngIf="event.photoURL"
+      [src]="event.photoURL"
+      alt="Event Photo"
+      class="event-photo"
+    />
+  </div>
 
   <!-- Comments Section -->
   <div class="comments-section">
@@ -32,7 +36,7 @@
       <p>
         <strong>{{ comment.authorName }}:</strong> {{ comment.text }}
       </p>
-      <small>{{ $any(comment).timestamp | date: 'short' }}</small>
+      <small>{{ $any(comment).timestamp | date : "short" }}</small>
 
       <button
         *ngIf="comment.authorId === currentUserId"
