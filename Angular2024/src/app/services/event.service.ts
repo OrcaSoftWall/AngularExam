@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Event } from '../models/event.model';
+import { Comment } from '../models/comment.model';
 import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
@@ -45,5 +46,37 @@ export class EventService {
   // Delete an event
   deleteEvent(eventId: string) {
     return this.firestore.doc(`events/${eventId}`).delete();
+  }
+
+  // Method to add a comment to an event
+  addComment(eventId: string, comment: Comment) {
+    return this.firestore
+      .collection('events')
+      .doc(eventId)
+      .collection('comments')
+      .add({
+        ...comment,
+        timestamp: new Date(), // Set timestamp server-side if possible
+      });
+  }
+
+  // Method to fetch comments for an event
+  getComments(eventId: string) {
+    return this.firestore
+      .collection('events')
+      .doc(eventId)
+      .collection<Comment>('comments', (ref) =>
+        ref.orderBy('timestamp', 'desc')
+      )
+      .valueChanges({ idField: 'id' });
+  }
+
+  deleteComment(eventId: string, commentId: string) {
+    return this.firestore
+      .collection('events')
+      .doc(eventId)
+      .collection('comments')
+      .doc(commentId)
+      .delete();
   }
 }

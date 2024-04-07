@@ -20,8 +20,8 @@ export class RegisterComponent {
 
   onRegister() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
-      this.authService.register(email, password).then(() => {
+      const { email, password, userName } = this.registerForm.value;
+      this.authService.register(email, password, userName).then(() => {
         console.log('Registration successful');
         this.router.navigate(['/dashboard']);
       }).catch(error => {

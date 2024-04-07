@@ -16,21 +16,39 @@
   />
 
   <!-- Comments Section -->
-  <!-- <div class="comments-section">
-      <h3>Comments</h3>
-      <form (ngSubmit)="submitComment()">
-        <textarea [(ngModel)]="commentText" name="comment" required placeholder="Write a comment..."></textarea>
-        <button type="submit">Post Comment</button>
-      </form> -->
+  <div class="comments-section">
+    <h3>Comments</h3>
+    <form (ngSubmit)="submitComment()">
+      <textarea
+        [(ngModel)]="commentText"
+        name="comment"
+        required
+        placeholder="Write a comment..."
+      ></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
 
-  <!-- <div class="comment" *ngFor="let comment of comments">
-        <p><strong>{{comment.authorName}}:</strong> {{comment.text}}</p>
-        <small>{{comment.timestamp | date:'short'}}</small> -->
-  <!-- Edit and Delete Buttons (shown conditionally if the user owns the comment) -->
-  <!-- <button *ngIf="comment.authorId === currentUserUid" (click)="editComment(comment.id)">Edit</button>
-        <button *ngIf="comment.authorId === currentUserUid" (click)="deleteComment(comment.id)">Delete</button>
-      </div>
-    </div> -->
+    <div class="comment" *ngFor="let comment of comments">
+      <p>
+        <strong>{{ comment.authorName }}:</strong> {{ comment.text }}
+      </p>
+      <small>{{ comment.timestamp | date : "short" }}</small>
+
+      <button
+        *ngIf="comment.authorId === currentUserId"
+        (click)="editComment(comment.id, comment.text)"
+      >
+        Edit
+      </button>
+
+      <button
+        *ngIf="comment.authorId === currentUserId"
+        (click)="deleteComment(comment.id)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
 </div>
 
 <ng-template #loading>
