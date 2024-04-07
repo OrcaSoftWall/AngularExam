@@ -27,10 +27,7 @@ export class AuthService {
     {
       // const { email, password, name, attending, group, accomodation } = formData;
       try {
-        const userCredential = await this.afAuth.createUserWithEmailAndPassword(
-          email,
-          password
-        );
+        const userCredential = await this.afAuth.createUserWithEmailAndPassword(          email,          password        );
         const uid = userCredential.user?.uid;
 
         // Construct the guest object
