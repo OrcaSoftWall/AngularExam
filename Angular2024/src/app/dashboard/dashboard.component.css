@@ -2,8 +2,7 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+    margin: 15px;
   }
   
   .col-sm-4 {
@@ -72,14 +71,14 @@
     border-color: #0056b3;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1080px) {
     .col-sm-4 {
       flex: 0 0 50%;
       max-width: 50%;
     }
   }
   
-  @media (max-width: 576px) {
+  @media (max-width: 768px) {
     .col-sm-4 {
       flex: 0 0 100%;
       max-width: 100%;

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, startWith } from 'rxjs/operators';
 import { Guest } from './models/guest.model';
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,29 @@ export class AuthService {
     private router: Router,
     private firestore: AngularFirestore
   ) {}
+
+  currentUserDetails$: Observable<{ name: string | null; email: string | null; }> = this.afAuth.authState.pipe(
+    switchMap((user: firebase.User | null) => {
+      if (!user || !user.email) {
+        // If there's no user or user email, immediately return an observable of null values for name and email
+        return of({ name: null, email: null });
+      } else {
+        const email = user.email; // Capture the user's email
+        // Attempt to fetch the user's name from Firestore. Ensure the observable's type matches the expected output
+        return this.firestore.collection('guests').doc<Guest>(user.uid).valueChanges().pipe(
+          map((guest: Guest | undefined) => {
+            // Check if guest data exists and map it to the expected structure
+            return {
+              name: guest ? guest.name : null,
+              email: email
+            };
+          }),
+          startWith({ name: null, email: email }) // Provide an initial value in case the Firestore query takes time
+        );
+      }
+    }),
+    startWith({ name: null, email: null }) // Initial value in case authState hasn't emitted yet
+  );
 
   async register(
     email: string,
@@ -68,12 +91,20 @@ export class AuthService {
     return this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
+          console.log("Fetching name for UID:", user.uid);
           return this.firestore
             .collection('guests')
             .doc(user.uid)
             .valueChanges()
-            .pipe(map((profile: any) => profile?.name || null));
+            // .pipe(map((profile: any) => profile?.name || null));
+            .pipe(
+              map((guest: any) => {
+                console.log("Fetched guest data:", guest);
+                return guest?.name || null;
+              })
+            );
         } else {
+          console.log("No user logged in");
           return of(null);
         }
       })

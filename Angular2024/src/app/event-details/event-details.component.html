@@ -7,9 +7,16 @@
   <div class="card-event">
     <div class="card-event-info">
       <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
+      <p><strong>Time:</strong> {{ event.time }} Hrs</p>
       <p><strong>Location:</strong> {{ event.location }}</p>
       <p><strong>Description:</strong> {{ event.description }}</p>
+
+      <button *ngIf="eventId" (click)="navigateToEditEvent(eventId)">Edit</button>
+      <button *ngIf="eventId" (click)="deleteEvent(eventId)">Delete</button>
     </div>
+
+
+
     <!-- If you're storing photoURLs and want to display an event image -->
     <img
       *ngIf="event.photoURL"

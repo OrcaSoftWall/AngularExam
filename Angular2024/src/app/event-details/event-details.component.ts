@@ -4,6 +4,7 @@ import { EventService } from '../services/event.service';
 import { Event } from '../models/event.model';
 import { Comment } from '../models/comment.model';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-details',
@@ -23,7 +24,8 @@ export class EventDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     // // Subscribe to the currentUserId$ observable to get the current user's ID
     // this.authService.currentUserId$.subscribe((id) => {
@@ -56,6 +58,32 @@ export class EventDetailsComponent implements OnInit {
       });
     }
   }
+
+
+  navigateToEditEvent(eventId: string | undefined): void {
+    if (!eventId) {
+      console.error('Event ID is undefined, cannot navigate to edit');
+      return;
+    }
+    this.router.navigate(['/edit-event', eventId]);
+  }
+
+  deleteEvent(eventId: string | undefined): void {
+    if (!eventId) {
+      console.error('Event ID is undefined, cannot delete');
+      return;
+    }
+    // Proceed with deletion logic if eventId is not undefined
+    if (confirm('Are you sure you want to delete this event?')) {
+      this.eventService.deleteEvent(eventId).then(() => {
+        console.log('Event successfully deleted');
+        // Add any additional logic here, such as redirecting the user
+      }).catch(error => {
+        console.error('Error deleting event:', error);
+      });
+    }
+  }
+  
 
   submitComment(): void {
     console.log("Attempting to submit comment:", this.commentText);

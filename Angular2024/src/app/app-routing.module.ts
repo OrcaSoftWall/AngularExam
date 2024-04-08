@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService] },
   { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService] },
   { path: 'add-event', component: AddEventComponent },
+  { path: 'edit-event/:id', component: AddEventComponent },
   { path: '**', redirectTo: '/404' },
   // { path: '404', component: ErrorComponent },
 ];
