@@ -11,6 +11,7 @@
 
 .card-event {
   display: flex;
+  justify-content: space-between;
 }
 
 h2 {
@@ -105,4 +106,17 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .card-event {
+    display: block;
+  }
+  .card-event-info {
+    width: 100%;
+  }
+  .card img.event-photo {
+    max-width: 100%;
+    margin: 10px auto;
+  }
 }
