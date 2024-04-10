@@ -34,7 +34,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getCurrentUserId().subscribe(userId => {
+    this.authService.getCurrentUserId().subscribe((userId) => {
       this.currentUserId = userId;
     });
     this.authService.getCurrentUserName().subscribe((name) => {
@@ -50,15 +50,16 @@ export class EventDetailsComponent implements OnInit {
       //   this.comments = comments;
       // });
       this.eventService.getComments(this.eventId).subscribe((comments) => {
-        this.comments = comments.map(comment => ({
+        this.comments = comments.map((comment) => ({
           ...comment,
           // Ensure the conversion method updates the type or is recognized as always returning a Date
-          timestamp: this.eventService.convertTimestampToDate(comment.timestamp) as Date
+          timestamp: this.eventService.convertTimestampToDate(
+            comment.timestamp
+          ) as Date,
         }));
       });
     }
   }
-
 
   navigateToEditEvent(eventId: string | undefined): void {
     if (!eventId) {
@@ -75,20 +76,22 @@ export class EventDetailsComponent implements OnInit {
     }
     // Proceed with deletion logic if eventId is not undefined
     if (confirm('Are you sure you want to delete this event?')) {
-      this.eventService.deleteEvent(eventId).then(() => {
-        console.log('Event successfully deleted');
-        // Add any additional logic here, such as redirecting the user
-      }).catch(error => {
-        console.error('Error deleting event:', error);
-      });
+      this.eventService
+        .deleteEvent(eventId)
+        .then(() => {
+          console.log('Event successfully deleted');
+          // Add any additional logic here, such as redirecting the user
+        })
+        .catch((error) => {
+          console.error('Error deleting event:', error);
+        });
     }
   }
-  
 
   submitComment(): void {
-    console.log("Attempting to submit comment:", this.commentText);
-    console.log("Current User ID:", this.currentUserId);
-    console.log("Current User Name:", this.currentUserName);
+    console.log('Attempting to submit comment:', this.commentText);
+    console.log('Current User ID:', this.currentUserId);
+    console.log('Current User Name:', this.currentUserName);
     if (
       this.eventId &&
       this.commentText.trim() &&
@@ -123,24 +126,48 @@ export class EventDetailsComponent implements OnInit {
     this.updatedCommentText = currentText;
   }
 
-  // In event-details.component.ts
-
-deleteComment(commentId: string | undefined) {
-  if (!this.eventId) {
-    console.error('Event ID is undefined');
-    return;
+  updateComment(commentId: string) {
+    if (this.eventId && commentId && this.updatedCommentText.trim().length > 0) {
+      this.eventService.updateCommentText(this.eventId, commentId, this.updatedCommentText)
+        .then(() => {
+          console.log('Comment updated successfully');
+          // Reset editing state
+          this.editingCommentId = null;
+          this.updatedCommentText = '';
+          // Optionally, refresh comments list or UI
+        })
+        .catch(error => {
+          console.error('Error updating comment:', error);
+        });
+    } else {
+      console.error('Missing eventId, commentId, or new comment text');
+    }
   }
-  if (confirm('Are you sure you want to delete this comment?')) {
-    this.eventService.deleteComment(this.eventId, commentId!)
-      .then(() => {
-        // Handle successful deletion
-        // Optionally, refresh the list of comments to reflect the deletion
-        this.comments = this.comments.filter(comment => comment.id !== commentId);
-      })
-      .catch(error => {
-        console.error('Error deleting comment: ', error);
-      });
-  }
-}
+  
 
+  cancelEdit() {
+    this.editingCommentId = null;
+    this.updatedCommentText = '';
+  }
+
+  deleteComment(commentId: string | undefined) {
+    if (!this.eventId) {
+      console.error('Event ID is undefined');
+      return;
+    }
+    if (confirm('Are you sure you want to delete this comment?')) {
+      this.eventService
+        .deleteComment(this.eventId, commentId!)
+        .then(() => {
+          // Handle successful deletion
+          // Optionally, refresh the list of comments to reflect the deletion
+          this.comments = this.comments.filter(
+            (comment) => comment.id !== commentId
+          );
+        })
+        .catch((error) => {
+          console.error('Error deleting comment: ', error);
+        });
+    }
+  }
 }

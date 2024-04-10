@@ -62,6 +62,17 @@ export class EventService {
       });
   }
 
+  updateCommentText(eventId: string, commentId: string, newText: string): Promise<void> {
+    return this.firestore.doc(`events/${eventId}/comments/${commentId}`).update({text: newText});
+  }
+  // updateCommentText(eventId: string, commentId: string, newText: string): Promise<void> {
+  //   // Correct path to the specific comment document
+  //   const commentDocPath = `events/${eventId}/comments/${commentId}`;
+  
+  //   // Attempt to update the 'text' field of the specified comment
+  //   return this.firestore.doc(commentDocPath).update({ text: newText });
+  // }
+
   // Method to fetch comments for an event
   getComments(eventId: string) {
     return this.firestore

@@ -11,13 +11,12 @@
       <p><strong>Location:</strong> {{ event.location }}</p>
       <p><strong>Description:</strong> {{ event.description }}</p>
 
-      <button *ngIf="eventId" (click)="navigateToEditEvent(eventId)">Edit</button>
+      <button *ngIf="eventId" (click)="navigateToEditEvent(eventId)">
+        Edit
+      </button>
       <button *ngIf="eventId" (click)="deleteEvent(eventId)">Delete</button>
     </div>
 
-
-
-    <!-- If you're storing photoURLs and want to display an event image -->
     <img
       *ngIf="event.photoURL"
       [src]="event.photoURL"
@@ -27,7 +26,8 @@
   </div>
 
   <!-- Comments Section -->
-  <div class="comments-section">
+
+  <!-- <div class="comments-section">
     <h3>Comments</h3>
     <form (ngSubmit)="submitComment()">
       <textarea
@@ -59,6 +59,50 @@
         Delete
       </button>
     </div>
+  </div>
+</div> -->
+
+  <h3>Comments</h3>
+  <form (ngSubmit)="submitComment()">
+    <textarea
+      [(ngModel)]="commentText"
+      name="comment"
+      required
+      placeholder="Write a comment..."
+    ></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+
+  <div class="comment" *ngFor="let comment of comments">
+    <div *ngIf="editingCommentId !== comment.id">
+      <p>
+        <strong>{{ comment.authorName }}:</strong> {{ comment.text }}
+      </p>
+      <small>{{ $any(comment).timestamp | date : "short" }}</small>
+    </div>
+
+    <!-- Editable input field appears if this comment is being edited -->
+    <div *ngIf="editingCommentId === comment.id">
+      <textarea [(ngModel)]="updatedCommentText" required></textarea>
+      <button (click)="updateComment(comment.id)">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+
+    <button
+      *ngIf="
+        comment.authorId === currentUserId && editingCommentId !== comment.id
+      "
+      (click)="editComment(comment.id, comment.text)"
+    >
+      Edit
+    </button>
+
+    <button
+      *ngIf="comment.authorId === currentUserId"
+      (click)="deleteComment(comment.id)"
+    >
+      Delete
+    </button>
   </div>
 </div>
 
