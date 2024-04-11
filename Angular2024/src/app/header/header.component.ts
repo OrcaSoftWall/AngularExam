@@ -42,3 +42,27 @@ export class HeaderComponent {
     this.isOpen = !this.isOpen;
   }
 }
+
+
+
+
+
+// import { Component, OnInit } from '@angular/core';
+// // Import animations as before
+
+// @Component({
+//   // Selector, animations, template, and styles as before
+// })
+// export class HeaderComponent implements OnInit {
+//   isOpen = true;
+
+//   ngOnInit() {
+//     setTimeout(() => {
+//       this.isOpen = false;
+//     }, 3000); // Automatically close after 3 seconds
+//   }
+
+//   toggle() {
+//     this.isOpen = !this.isOpen;
+//   }
+// }

@@ -1,5 +1,4 @@
-
-header {
+/* header {
     height:95vh;
 }
 
@@ -9,4 +8,37 @@ img.top {
   left: -5%;
   height: 120vh;
   width: 105%;
+} */
+
+
+
+
+
+header {
+  position: relative;
+  overflow: hidden; /* Ensures the image doesn't overflow the header */
+}
+
+.top {
+  width: 100%;
+  height: calc(100vh - 50px); /* Adjust based on your nav height */
+  object-fit: cover;
+  transition: height 1s ease; /* Smooth transition for the height */
+}
+
+nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent or any styling you prefer */
+  padding: 10px 0; /* Adjust as needed */
+  text-align: center;
+}
+
+h1 {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 60px; /* Adjust based on your nav height + some offset */
+  color: #fff;
 }
