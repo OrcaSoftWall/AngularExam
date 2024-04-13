@@ -16,10 +16,6 @@ export class EventService {
     return this.firestore.collection('events').add(event);
   }
 
-  // Retrieve all events
-  // getEvents() {
-  //   return this.firestore.collection('events').snapshotChanges();
-  // }
   getEvents() {
     return this.firestore
       .collection<Event>('events')
@@ -35,22 +31,18 @@ export class EventService {
       );
   }
 
-  //get single event
   getEventById(id: string) {
     return this.firestore.collection('events').doc<Event>(id).valueChanges();
   }
 
-  // Update an event
   updateEvent(eventId: string, event: Event) {
     return this.firestore.doc(`events/${eventId}`).update(event);
   }
 
-  // Delete an event
   deleteEvent(eventId: string) {
     return this.firestore.doc(`events/${eventId}`).delete();
   }
 
-  // Method to add a comment to an event
   addComment(eventId: string, comment: Comment) {
     return this.firestore
       .collection('events')
@@ -58,7 +50,7 @@ export class EventService {
       .collection('comments')
       .add({
         ...comment,
-        timestamp: new Date(), // Set timestamp server-side if possible
+        timestamp: new Date(), 
       });
   }
 
@@ -73,7 +65,6 @@ export class EventService {
   //   return this.firestore.doc(commentDocPath).update({ text: newText });
   // }
 
-  // Method to fetch comments for an event
   getComments(eventId: string) {
     return this.firestore
       .collection('events')

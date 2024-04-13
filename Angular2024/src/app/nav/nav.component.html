@@ -1,6 +1,9 @@
 <nav>
   <div class="links">
     <a routerLink="/">Home</a>
+    <a *ngIf="!(userService.isLogged | async)" routerLink="/dashboard"
+    >Dashboard</a
+  >
     <a *ngIf="!(userService.isLogged | async)" routerLink="/login">Login</a>
     <a *ngIf="!(userService.isLogged | async)" routerLink="/register"
       >Register</a

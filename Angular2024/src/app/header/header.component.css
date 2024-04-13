@@ -1,80 +1,28 @@
-/* header {
-    height:95vh;
-}
-
-img.top {
-  position: absolute;
-  top: -25vh;
-  left: -5%;
-  height: 120vh;
-  width: 105%;
-} */
-
-
-
-/* 
-
-header {
-  position: relative;
-  overflow: hidden; 
-}
-
-.top {
-  width: 100%;
-  height: calc(100vh - 50px); 
-  object-fit: cover;
-  transition: height 1s ease; 
-}
-
-nav {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.9); 
-  padding: 10px 0; 
-  text-align: center;
-}
-
-h1 {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: 60px;
-  color: #fff;
-} */
-
-
-
-
-
-
-
-
-
 
 header {
   position: relative;
   height: 95vh; 
-  /* background-color: #f3f3f3;  */
   width: 100%;
-
-
-  transition: height 3s ease;
+  transition: height 5s ease-in-out;
   overflow: hidden;
-}
-
-.header-image {  
-  position: absolute;
-  left: -5%;
-  width: 105%;
-  /* height: 100%; */
-  object-fit: cover;
-
-  height: auto;
 }
 
 header.shrunk {
   height: 15vh;
+}
+.header-image {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center; /* Center the image initially */
+  transition: object-position 5s ease-in-out, height 5s ease-in-out; /* Smooth transition for object position and height */
+}
+
+
+header.shrunk .header-image {
+  object-position: center 160%; /* Shift to 30% from the top */
 }
 
 :not(.shrunk) {

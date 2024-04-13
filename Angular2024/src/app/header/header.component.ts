@@ -20,13 +20,11 @@ export class HeaderComponent implements OnInit {
     if (this.isOnHomePage()) {
       setTimeout(() => {
         this.headerService.setShrunk(true);
-      }, 3000);
+      }, 2000);
     }
   }
 
   private isOnHomePage(): boolean {
-    // Implement logic to determine if the current page is the home page
-    // This could depend on your routing setup
     return window.location.pathname === '/';
   }
 }

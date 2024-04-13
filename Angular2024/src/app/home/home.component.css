@@ -1,0 +1,70 @@
+
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url('https://img.freepik.com/free-photo/high-angle-engagement-rings-beside-flowers_23-2148480738.jpg?w=1380&t=st=1713002512~exp=1713003112~hmac=6dd7cc71a7ff496371c9e48710d65a4ca0ac1b61ab84131cce859df85ed0ed7d');
+    /* background-image: url('https://img.freepik.com/premium-vector/green-flower-petals-falling-down-shapely-romantic-flowers-falling-rain-flying-petal-white-wide-background-love-romance-concept-delightful-wedding-invitation_174187-888.jpg?w=1480'); */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: inset 0 0 0 1000px rgba(250, 255, 235, 0.4);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #444;
+    padding-bottom: 20px;
+}
+
+article{
+	background-image: url('https://wallpaperset.com/w/full/1/0/7/443855.jpg');
+    /* padding: 0 3em; */
+}
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    font-size: 1.75rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+section p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+strong {
+    color: #d35400; /* A strong color for important names and dates */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #eee;
+    color: #666;
+}
+
+footer p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+footer hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Add a little more style to the footer */
+footer p:last-child {
+    font-size: 1.1rem;
+    font-style: italic;
+}

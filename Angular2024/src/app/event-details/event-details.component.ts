@@ -80,7 +80,7 @@ export class EventDetailsComponent implements OnInit {
         .deleteEvent(eventId)
         .then(() => {
           console.log('Event successfully deleted');
-          // Add any additional logic here, such as redirecting the user
+          this.router.navigate(['dashboard']);
         })
         .catch((error) => {
           console.error('Error deleting event:', error);
@@ -109,7 +109,6 @@ export class EventDetailsComponent implements OnInit {
         .addComment(this.eventId, comment)
         .then(() => {
           this.commentText = '';
-          // Optionally, refresh comments...
         })
         .catch((error) => {
           console.error('Error adding comment: ', error);
@@ -131,10 +130,8 @@ export class EventDetailsComponent implements OnInit {
       this.eventService.updateCommentText(this.eventId, commentId, this.updatedCommentText)
         .then(() => {
           console.log('Comment updated successfully');
-          // Reset editing state
           this.editingCommentId = null;
           this.updatedCommentText = '';
-          // Optionally, refresh comments list or UI
         })
         .catch(error => {
           console.error('Error updating comment:', error);
@@ -159,8 +156,6 @@ export class EventDetailsComponent implements OnInit {
       this.eventService
         .deleteComment(this.eventId, commentId!)
         .then(() => {
-          // Handle successful deletion
-          // Optionally, refresh the list of comments to reflect the deletion
           this.comments = this.comments.filter(
             (comment) => comment.id !== commentId
           );
