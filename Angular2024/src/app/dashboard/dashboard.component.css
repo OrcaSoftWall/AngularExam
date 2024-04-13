@@ -1,4 +1,3 @@
-/* dashboard.component.css */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -14,7 +13,6 @@
     box-sizing: border-box;
   }
   
-  /* Style for the cards */
   .card {
     position: relative;
     display: flex;
@@ -23,17 +21,20 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: px solid rgba(0,0,0,.125);
+    background-image:url('https://freedesignfile.com/upload/2016/06/Elegant-floral-background-illustration-vector-07.jpg');
+    background-position: -2px;
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.7);
     border-radius: .25rem;
-    margin-bottom: 20px; /* Spacing between cards */
+    margin-bottom: 20px; 
   }
   
   .card-img-top {
     width: 100%;
     border-top-left-radius: calc(.25rem - 1px);
     border-top-right-radius: calc(.25rem - 1px);
-    object-fit: cover; /* Keep images aspect ratio */
-    height: 200px; /* Fixed height for images */
+    object-fit: cover; 
+    height: 200px; 
   }
   
   .card-body {

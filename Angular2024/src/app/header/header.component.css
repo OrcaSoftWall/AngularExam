@@ -12,26 +12,26 @@ img.top {
 
 
 
-
+/* 
 
 header {
   position: relative;
-  overflow: hidden; /* Ensures the image doesn't overflow the header */
+  overflow: hidden; 
 }
 
 .top {
   width: 100%;
-  height: calc(100vh - 50px); /* Adjust based on your nav height */
+  height: calc(100vh - 50px); 
   object-fit: cover;
-  transition: height 1s ease; /* Smooth transition for the height */
+  transition: height 1s ease; 
 }
 
 nav {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent or any styling you prefer */
-  padding: 10px 0; /* Adjust as needed */
+  background-color: rgba(255, 255, 255, 0.9); 
+  padding: 10px 0; 
   text-align: center;
 }
 
@@ -39,6 +39,38 @@ h1 {
   position: absolute;
   width: 100%;
   text-align: center;
-  bottom: 60px; /* Adjust based on your nav height + some offset */
+  bottom: 60px;
   color: #fff;
+} */
+
+
+
+
+
+
+
+
+
+
+header {
+  position: relative;
+  height: 95vh; 
+  width: 100%;
+  background-color: #f3f3f3; 
+}
+
+.header-image {  
+  position: absolute;
+  left: -5%;
+  width: 105%;
+  height: 100%;
+  object-fit: cover;
+}
+
+header {
+  transition: height 0.5s ease-in-out;
+}
+
+.shrunk {
+  height: 0; 
 }
