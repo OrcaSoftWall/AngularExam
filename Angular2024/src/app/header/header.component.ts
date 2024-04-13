@@ -1,16 +1,59 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  onNavClick(): void {
-    // This could either shrink the header or scroll the page
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+export class HeaderComponent implements OnInit {
+  isShrunk: boolean = false;
+
+  constructor(private headerService: HeaderService) {}
+
+  ngOnInit(): void {
+    this.headerService.shrunk.subscribe(shrunk => {
+      this.isShrunk = shrunk;
+    });
+
+    // Auto-shrink after 5 seconds if on the home page
+    if (this.isOnHomePage()) {
+      setTimeout(() => {
+        this.headerService.setShrunk(true);
+      }, 3000);
+    }
+  }
+
+  private isOnHomePage(): boolean {
+    // Implement logic to determine if the current page is the home page
+    // This could depend on your routing setup
+    return window.location.pathname === '/';
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-header',
+//   templateUrl: './header.component.html',
+//   styleUrls: ['./header.component.css']
+// })
+// export class HeaderComponent {
+//   onNavClick(): void {
+//     // This could either shrink the header or scroll the page
+//     window.scrollTo({ top: 0, behavior: 'smooth' });
+//   }
+// }
 
 
 
