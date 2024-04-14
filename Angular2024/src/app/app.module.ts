@@ -22,6 +22,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddEventComponent } from './add-event/add-event.component';
 import { FormsModule } from '@angular/forms';
 
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapComponent } from './google-map/google-map.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +38,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     MainComponent,
     AddEventComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,8 @@ import { FormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    GoogleMapsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

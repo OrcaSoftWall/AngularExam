@@ -1,128 +1,123 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit, OnDestroy } from '@angular/core';
+// import { HeaderService } from '../services/header.service';
+// import { Router, NavigationEnd, Event as RouterEvent } from '@angular/router';
+// import { filter } from 'rxjs/operators';
+// import { Subscription } from 'rxjs';
+
+// @Component({
+//   selector: 'app-header',
+//   templateUrl: './header.component.html',
+//   styleUrls: ['./header.component.css']
+// })
+// export class HeaderComponent implements OnInit, OnDestroy {
+//   isShrunk: boolean = false;
+//   private routerSubscription!: Subscription;
+
+//   constructor(private headerService: HeaderService, private router: Router) {}
+
+//   ngOnInit(): void {
+//     // Determine the initial state based on the current URL before any navigation events
+//     this.determineHeaderState(this.router.url);
+
+//     this.routerSubscription = this.router.events.pipe(
+//       filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+//     ).subscribe((event: NavigationEnd) => {
+//       this.determineHeaderState(event.urlAfterRedirects);
+//     });
+
+//     this.headerService.shrunk.subscribe(shrunk => {
+//       this.isShrunk = shrunk;
+//     });
+//   }
+
+//   ngOnDestroy(): void {
+//     this.routerSubscription.unsubscribe();
+//   }
+
+//   private determineHeaderState(url: string): void {
+//     const isHome = url === '/';
+//     if (isHome) {
+//       // Start full size and schedule a shrink
+//       this.headerService.setShrunk(false);
+//       setTimeout(() => this.headerService.setShrunk(true), 2000);
+//     } else {
+//       // Immediately set to shrunk for non-home pages
+//       this.headerService.setShrunk(true);
+//     }
+//   }
+// }
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from '../services/header.service';
+import { Router, NavigationEnd, Event as RouterEvent } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isShrunk: boolean = false;
+  private routerSubscription!: Subscription;  // Use '!' to assure TypeScript it's handled correctly
 
-  constructor(private headerService: HeaderService) {}
+  constructor(private headerService: HeaderService, private router: Router) {}
 
   ngOnInit(): void {
+    this.routerSubscription = this.router.events.pipe(
+      filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      // Adjust header based on whether the route is the home page
+      const isHome = event.urlAfterRedirects === '/';
+      this.headerService.setShrunk(!isHome);
+
+      // Delay shrinking if it's the home page
+      if (isHome) {
+        setTimeout(() => this.headerService.setShrunk(true), 2000);
+      }
+    });
+
     this.headerService.shrunk.subscribe(shrunk => {
       this.isShrunk = shrunk;
     });
-
-    // Auto-shrink after 5 seconds if on the home page
-    if (this.isOnHomePage()) {
-      setTimeout(() => {
-        this.headerService.setShrunk(true);
-      }, 2000);
-    }
   }
 
-  private isOnHomePage(): boolean {
-    return window.location.pathname === '/';
+  ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();  // Proper cleanup to avoid memory leaks
   }
 }
 
 
 
 
-
-
-
-
-
-
-
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-header',
-//   templateUrl: './header.component.html',
-//   styleUrls: ['./header.component.css']
-// })
-// export class HeaderComponent {
-//   onNavClick(): void {
-//     // This could either shrink the header or scroll the page
-//     window.scrollTo({ top: 0, behavior: 'smooth' });
-//   }
-// }
-
-
-
-
-
-
-// import { Component } from '@angular/core';
-// import {
-//   trigger,
-//   state,
-//   style,
-//   animate,
-//   transition,
-//   // ...
-// } from '@angular/animations';
-// @Component({
-//   selector: 'app-header',
-
-//   animations: [
-//     trigger('openClose', [
-//       // ...
-//       state('open', style({
-//         position: 'absolute',
-//         top: '-25vh',
-//         left: '-5%',
-//         height: '120vh',
-//         width: '105%'
-//       })),
-//       state('closed', style({
-//         height:'0vh'
-//       })),
-//       transition('open => closed', [
-//         animate('1s')
-//       ]),
-//       transition('closed => open', [
-//         animate('0.5s')
-//       ]),
-//     ]),
-//   ],
-
-//   templateUrl: './header.component.html',
-//   styleUrls: ['./header.component.css']
-// })
-// export class HeaderComponent {
-//  isOpen = true;
-
-//   toggle() {
-//     this.isOpen = !this.isOpen;
-//   }
-// }
-
-
-
-
-
 // import { Component, OnInit } from '@angular/core';
-// // Import animations as before
+// import { HeaderService } from '../services/header.service';
 
 // @Component({
-//   // Selector, animations, template, and styles as before
+//   selector: 'app-header',
+//   templateUrl: './header.component.html',
+//   styleUrls: ['./header.component.css']
 // })
 // export class HeaderComponent implements OnInit {
-//   isOpen = true;
+//   isShrunk: boolean = false;
 
-//   ngOnInit() {
-//     setTimeout(() => {
-//       this.isOpen = false;
-//     }, 3000); // Automatically close after 3 seconds
+//   constructor(private headerService: HeaderService) {}
+
+//   ngOnInit(): void {
+//     this.headerService.shrunk.subscribe(shrunk => {
+//       this.isShrunk = shrunk;
+//     });
+
+//     // Auto-shrink after 5 seconds if on the home page
+//     if (this.isOnHomePage()) {
+//       setTimeout(() => {
+//         this.headerService.setShrunk(true);
+//       }, 2000);
+//     }
 //   }
 
-//   toggle() {
-//     this.isOpen = !this.isOpen;
+//   private isOnHomePage(): boolean {
+//     return window.location.pathname === '/';
 //   }
 // }

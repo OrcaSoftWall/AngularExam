@@ -22,7 +22,24 @@
 
 <app-header />
 <app-nav />
-<!-- <h1>DASHBOARD</h1> -->
+<!-- <h1>Highlights</h1> -->
+<google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+  <ng-container *ngFor="let event of events">
+    <ng-container *ngIf="parseGps(event.locationGps) as position">
+      <map-marker [position]="position" [title]="event.title">
+        <map-info-window>
+          <h4>{{ event.title }}</h4>
+          <p><strong>Time:</strong> {{ event.time }} Hrs</p>
+          <p>{{ event.description | slice:0:100 }}</p>
+          <div *ngIf="authService.currentUser$ | async">
+            <a [routerLink]="['/event-details', event.id]" class="btn btn-primary">Details</a>
+          </div>
+        </map-info-window>
+      </map-marker>
+    </ng-container>
+  </ng-container>
+</google-map>
+
 <div class="row">
   <div class="col-sm-4" *ngFor="let event of events">
     <div class="card">
