@@ -12,8 +12,8 @@ header.shrunk {
 }
 .header-image {
   position: absolute;
-  left: 0;
-  width: 100%;
+  left: -3%;
+  width: 103%;
   height: 100%;
   object-fit: cover;
   object-position: center center; /* Center the image initially */

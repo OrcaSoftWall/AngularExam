@@ -40,6 +40,10 @@ export const firebaseConfig = {
   measurementId: "G-7V71D2EQ54"
 };
 
+export const googleMapConfig = {
+  apiKey:'AIzaSyBdATvjw1T2LvQjN_41oOnXgGGuto6dQxM',
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
