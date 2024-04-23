@@ -1,29 +1,6 @@
-<!-- 
-  <app-header />
-  <app-nav />
-<h1>DASHBOARD</h1>
-<div class="row">
-  <div class="col-sm-4" *ngFor="let event of events">
-    <div class="card">
-      <img class="card-img-top" [src]="event.photoURL" alt="Event image" />
-      <div class="card-body">
-        <h5 class="card-title">{{ event.title }}</h5>
-        <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
-        <p><strong>Time:</strong> {{ event.time }} Hrs</p>
-        <h5 class="card-text">{{ event.description | slice : 0 : 100 }}...</h5>
-        <a [routerLink]="['/event-details', event.id]" class="btn btn-primary"
-          >Details</a
-        >
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <app-header />
 <app-nav />
-<!-- <h1>Highlights</h1> -->
-<google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+<!-- <google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
   <ng-container *ngFor="let event of events">
     <ng-container *ngIf="parseGps(event.locationGps) as position">
       <map-marker [position]="position" [title]="event.title">
@@ -33,6 +10,38 @@
           <p>{{ event.description | slice:0:100 }}</p>
           <div *ngIf="authService.currentUser$ | async">
             <a [routerLink]="['/event-details', event.id]" class="btn btn-primary">Details</a>
+          </div>
+        </map-info-window>
+      </map-marker>
+    </ng-container>
+  </ng-container>
+</google-map> -->
+<google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+  <ng-container *ngFor="let event of events">
+    <ng-container *ngIf="parseGps(event.locationGps) as position">
+      <map-marker
+        [position]="position"
+        [title]="event.title"
+        #marker="mapMarker"
+        (mapClick)="openInfoWindow(marker, infoWindow)"
+      >
+        <map-info-window #infoWindow="mapInfoWindow" class="popup">
+          <img
+            class="card-img-popup"
+            [src]="event.photoURL"
+            alt="Event image"
+          />
+          <div>
+            <h4>{{ event.title }}</h4>
+            <p><strong>Time:</strong> {{ event.time }} Hrs</p>
+            <p>{{ event.description | slice : 0 : 100 }}</p>
+            <div *ngIf="authService.currentUser$ | async" class="but">
+              <a
+                [routerLink]="['/event-details', event.id]"
+                class="btn btn-primary"
+                >Details</a
+              >
+            </div>
           </div>
         </map-info-window>
       </map-marker>
@@ -49,7 +58,12 @@
         <p><strong>Date:</strong> {{ event.date | date : "fullDate" }}</p>
         <p><strong>Time:</strong> {{ event.time }} Hrs</p>
         <h5 class="card-text">{{ event.description | slice : 0 : 100 }}...</h5>
-        <a *ngIf="authService.currentUser$ | async" [routerLink]="['/event-details', event.id]" class="btn btn-primary">Details</a>
+        <a
+          *ngIf="authService.currentUser$ | async"
+          [routerLink]="['/event-details', event.id]"
+          class="btn btn-primary"
+          >Details</a
+        >
       </div>
     </div>
   </div>

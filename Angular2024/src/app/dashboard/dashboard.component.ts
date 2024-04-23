@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   events: Event[] = [];
   center: google.maps.LatLngLiteral = { lat: 48.15, lng: 17.11 };
   zoom: number = 4;
+  lastOpenInfoWindow: any = null; 
 
   constructor(
     private eventService: EventService,
@@ -56,4 +57,13 @@ export class DashboardComponent implements OnInit {
     }
     return newDate;
   }
+
+  openInfoWindow(marker: any, infoWindow: any) {
+    if (this.lastOpenInfoWindow) {
+      this.lastOpenInfoWindow.close();
+    }
+    this.lastOpenInfoWindow = infoWindow;
+    infoWindow.open(marker);
+  }
+  
 }
