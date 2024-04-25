@@ -21,7 +21,7 @@
   </div>
   <div class="username">
     <span *ngIf="authService.currentUserDetails$ | async as userDetails">
-      {{ userDetails.name || userDetails.email }}
+      {{ userDetails.name || userDetails.email }} 
     </span>
   </div>
 </nav>

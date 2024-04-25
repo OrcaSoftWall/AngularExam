@@ -7,5 +7,6 @@ export interface Guest {
     attending: boolean; // Whether the guest has confirmed attendance
     group: number; // Optional, indicates if the guest can bring a plus one
     accomodation: string;
+    role: string;
   }
   
