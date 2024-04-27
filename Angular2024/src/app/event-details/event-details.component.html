@@ -9,10 +9,10 @@
       <p><strong>Location:</strong> {{ event.location }}</p>
       <p><strong>Description:</strong> {{ event.description }}</p>
 
-      <button *ngIf="eventId" (click)="navigateToEditEvent(eventId)">
+      <button *ngIf="eventId && isAdmin" (click)="navigateToEditEvent(eventId)">
         Edit
       </button>
-      <button *ngIf="eventId" (click)="deleteEvent(eventId)">Delete</button>
+      <button *ngIf="eventId&& isAdmin" (click)="deleteEvent(eventId)">Delete</button>
     </div>
 
     <img
@@ -22,43 +22,6 @@
       class="event-photo"
     />
   </div>
-
-  <!-- Comments Section -->
-
-  <!-- <div class="comments-section">
-    <h3>Comments</h3>
-    <form (ngSubmit)="submitComment()">
-      <textarea
-        [(ngModel)]="commentText"
-        name="comment"
-        required
-        placeholder="Write a comment..."
-      ></textarea>
-      <button type="submit">Post Comment</button>
-    </form>
-
-    <div class="comment" *ngFor="let comment of comments">
-      <p>
-        <strong>{{ comment.authorName }}:</strong> {{ comment.text }}
-      </p>
-      <small>{{ $any(comment).timestamp | date : "short" }}</small>
-
-      <button
-        *ngIf="comment.authorId === currentUserId"
-        (click)="editComment(comment.id, comment.text)"
-      >
-        Edit
-      </button>
-
-      <button
-        *ngIf="comment.authorId === currentUserId"
-        (click)="deleteComment(comment.id)"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
-</div> -->
 
   <h3>Comments</h3>
   <form (ngSubmit)="submitComment()">

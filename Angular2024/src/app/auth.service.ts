@@ -128,4 +128,27 @@ export class AuthService {
   getCurrentUserId(): Observable<string | null> {
     return this.afAuth.authState.pipe(map((user) => (user ? user.uid : null)));
   }
+
+
+  // Method to check if the current user is an administrator
+  isAdministrator(): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (!user) {
+          // Directly return an Observable of false if there's no user
+          return of(false);
+        }
+        // Fetch the user details from Firestore
+        return this.firestore.doc<{ role: string }>(`users/${user.uid}`).valueChanges().pipe(
+          map(userDetails => {
+            if (!userDetails) {
+              return false; // Return false if no userDetails are found
+            }
+            // Check if the user's role is one of the designated admin roles
+            return ['groom', 'bride', 'organizer'].includes(userDetails.role);
+          })
+        );
+      })
+    );
+  }
 }

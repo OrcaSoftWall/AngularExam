@@ -5,12 +5,14 @@ import { Event } from '../models/event.model';
 import { Comment } from '../models/comment.model';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Observable, defer } from 'rxjs';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css'],
 })
+
 export class EventDetailsComponent implements OnInit {
   event?: Event;
   eventId: string | null = null;
@@ -20,18 +22,15 @@ export class EventDetailsComponent implements OnInit {
   currentUserName: string | null = null;
   editingCommentId: string | null = null;
   updatedCommentText: string = '';
+  isAdmin: boolean = false;
+  // isAdmin$: Observable<boolean> = defer(() => this.authService.isAdministrator());
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
     private authService: AuthService,
     private router: Router
-  ) {
-    // // Subscribe to the currentUserId$ observable to get the current user's ID
-    // this.authService.currentUserId$.subscribe((id) => {
-    //   this.currentUserId = id;
-    // });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.authService.getCurrentUserId().subscribe((userId) => {
@@ -41,14 +40,13 @@ export class EventDetailsComponent implements OnInit {
       this.currentUserName = name;
     });
     this.eventId = this.route.snapshot.paramMap.get('id'); // Retrieve the event ID from the route
+    this.authService.isAdministrator().subscribe((isAdmin) => {
+      this.isAdmin = isAdmin;
+    });
     if (this.eventId) {
       this.eventService.getEventById(this.eventId).subscribe((event) => {
         this.event = event; // Assign the fetched event to your component property
       });
-      // Fetch comments for the event
-      // this.eventService.getComments(this.eventId).subscribe((comments) => {
-      //   this.comments = comments;
-      // });
       this.eventService.getComments(this.eventId).subscribe((comments) => {
         this.comments = comments.map((comment) => ({
           ...comment,
@@ -126,21 +124,25 @@ export class EventDetailsComponent implements OnInit {
   }
 
   updateComment(commentId: string) {
-    if (this.eventId && commentId && this.updatedCommentText.trim().length > 0) {
-      this.eventService.updateCommentText(this.eventId, commentId, this.updatedCommentText)
+    if (
+      this.eventId &&
+      commentId &&
+      this.updatedCommentText.trim().length > 0
+    ) {
+      this.eventService
+        .updateCommentText(this.eventId, commentId, this.updatedCommentText)
         .then(() => {
           console.log('Comment updated successfully');
           this.editingCommentId = null;
           this.updatedCommentText = '';
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Error updating comment:', error);
         });
     } else {
       console.error('Missing eventId, commentId, or new comment text');
     }
   }
-  
 
   cancelEdit() {
     this.editingCommentId = null;
