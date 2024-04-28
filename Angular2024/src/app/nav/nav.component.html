@@ -12,7 +12,7 @@
       >Dashboard</a
     >
     <!-- <a *ngIf="userService.isLogged | async" routerLink="/event-details">Events</a> -->
-    <a *ngIf="userService.isLogged | async" routerLink="/add-event"
+    <a *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)" routerLink="/add-event"
       >Add Event</a
     >
     <a *ngIf="userService.isLogged | async" (click)="userService.logout()"
