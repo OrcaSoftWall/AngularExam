@@ -23,7 +23,6 @@ export class EventDetailsComponent implements OnInit {
   editingCommentId: string | null = null;
   updatedCommentText: string = '';
   isAdmin: boolean = false;
-  // isAdmin$: Observable<boolean> = defer(() => this.authService.isAdministrator());
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +32,6 @@ export class EventDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.isAdmin$ = this.authService.isAdministrator();
     this.authService.getCurrentUserId().subscribe((userId) => {
       this.currentUserId = userId;
     });

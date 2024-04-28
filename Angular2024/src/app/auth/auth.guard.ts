@@ -289,13 +289,16 @@ export class AuthGuardService implements CanActivate {
           .valueChanges()
           .pipe(
             map(userDetails => {
-              const userRole = userDetails?.role; // Provide a default empty string if role is undefined
+              const userRole = userDetails?.role || ""; // Provide a default empty string if role is undefined
               console.log('User role from Firestore:', userRole);
 
-              const isAdmin = userRole ? ['groom', 'bride', 'organizer'].includes(userRole) : false;
+              // const isAdmin = userRole ? ['groom', 'bride', 'organizer'].includes(userRole) : false;
+              const isAdmin = ['groom', 'bride', 'organizer'].includes(userRole);
               console.log('Is user an admin:', isAdmin);
 
               if (isAdmin || (roles && userRole && roles.includes(userRole))) {
+                // if (isAdmin) {
+                console.log("isAdmin || (roles && userRole && roles.includes(userRole)):", isAdmin || (roles && userRole && roles.includes(userRole)))
                 return true;
               } else {
                 console.log('Not authorized to access this page, user role:', userRole);
@@ -308,7 +311,7 @@ export class AuthGuardService implements CanActivate {
               this.router.navigate(['/']);
               return of(false);
             }),
-            startWith(true) // Handle cases where the valueChanges might not emit immediately
+            // startWith(false) // Handle cases where the valueChanges might not emit immediately
           );
       })
     );
