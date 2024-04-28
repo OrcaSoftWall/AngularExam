@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: 'edit-event/:id', component: AddEventComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: '**', redirectTo: '/404' },

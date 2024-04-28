@@ -12,7 +12,9 @@
       <button *ngIf="eventId && isAdmin" (click)="navigateToEditEvent(eventId)">
         Edit
       </button>
-      <button *ngIf="eventId&& isAdmin" (click)="deleteEvent(eventId)">Delete</button>
+      <button *ngIf="eventId && isAdmin" (click)="deleteEvent(eventId)">
+        Delete
+      </button>
     </div>
 
     <img
@@ -49,7 +51,7 @@
       <button (click)="cancelEdit()">Cancel</button>
     </div>
 
-    <button
+    <!-- <button
       *ngIf="
         comment.authorId === currentUserId && editingCommentId !== comment.id
       "
@@ -60,6 +62,22 @@
 
     <button
       *ngIf="comment.authorId === currentUserId"
+      (click)="deleteComment(comment.id)"
+    >
+      Delete
+    </button> -->
+    <button
+      *ngIf="
+        comment.authorId === currentUserId ||
+        (isAdmin && editingCommentId !== comment.id)
+      "
+      (click)="editComment(comment.id, comment.text)"
+    >
+      Edit
+    </button>
+
+    <button
+      *ngIf="comment.authorId === currentUserId || isAdmin"
       (click)="deleteComment(comment.id)"
     >
       Delete

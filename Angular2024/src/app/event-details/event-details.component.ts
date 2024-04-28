@@ -33,6 +33,7 @@ export class EventDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.isAdmin$ = this.authService.isAdministrator();
     this.authService.getCurrentUserId().subscribe((userId) => {
       this.currentUserId = userId;
     });
@@ -42,6 +43,7 @@ export class EventDetailsComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('id'); // Retrieve the event ID from the route
     this.authService.isAdministrator().subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
+      console.log("ISADMIN",this.isAdmin)
     });
     if (this.eventId) {
       this.eventService.getEventById(this.eventId).subscribe((event) => {

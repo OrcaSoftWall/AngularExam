@@ -139,11 +139,12 @@ export class AuthService {
           return of(false);
         }
         // Fetch the user details from Firestore
-        return this.firestore.doc<{ role: string }>(`users/${user.uid}`).valueChanges().pipe(
+        return this.firestore.doc<{ role: string }>(`guests/${user.uid}`).valueChanges().pipe(
           map(userDetails => {
             if (!userDetails) {
               return false; // Return false if no userDetails are found
             }
+            console.log("['groom', 'bride', 'organizer'].includes(userDetails.role);",['groom', 'bride', 'organizer'].includes(userDetails.role),userDetails)
             // Check if the user's role is one of the designated admin roles
             return ['groom', 'bride', 'organizer'].includes(userDetails.role);
           })
