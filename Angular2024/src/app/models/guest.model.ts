@@ -8,5 +8,6 @@ export interface Guest {
     group: number; // Optional, indicates if the guest can bring a plus one
     accomodation: string;
     role: string;
+    finalPhotoURL: string;
   }
   

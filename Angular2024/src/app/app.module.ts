@@ -26,6 +26,9 @@ import { FormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapComponent } from './google-map/google-map.component';
 
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+// import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { MapComponent } from './google-map/google-map.component';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     ReactiveFormsModule,
     FormsModule,
     GoogleMapsModule, 

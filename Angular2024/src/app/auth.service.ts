@@ -1,19 +1,22 @@
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap, map, startWith } from 'rxjs/operators';
 import { Guest } from './models/guest.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage, // Inject Firebase Storage
     private router: Router,
-    private firestore: AngularFirestore
   ) {}
 
   currentUserDetails$: Observable<{
@@ -54,7 +57,9 @@ export class AuthService {
     attending: boolean,
     group: number,
     accomodation: string,
-    role: string
+    role: string, 
+    photoURL: string, 
+    file?: File,
   ) {
     {
       // const { email, password, name, attending, group, accomodation } = formData;
@@ -65,6 +70,27 @@ export class AuthService {
         );
         const uid = userCredential.user?.uid;
 
+
+        let finalPhotoURL = photoURL;
+
+        // if (file) {
+        //   const filePath = `profile_photos/${uid}`;
+        //   const fileRef = this.storage.ref(filePath);
+        //   const result = await this.storage.upload(filePath, file);
+        //   finalPhotoURL = await fileRef.getDownloadURL();
+        // }
+
+        if (file) {
+          const filePath = `profile_photos/${uid}`;
+          const fileRef = this.storage.ref(filePath);
+          const uploadTask = this.storage.upload(filePath, file);
+        
+          // Convert upload task to promise
+          const snapshot = await uploadTask.snapshotChanges().toPromise();
+          finalPhotoURL = await fileRef.getDownloadURL().toPromise(); // Directly await the download URL after upload completes
+        }
+        
+
         // Construct the guest object
         const guestData: Guest = {
           name,
@@ -73,17 +99,16 @@ export class AuthService {
           group,
           accomodation,
           role,
+          finalPhotoURL
         };
 
-        if (uid) {
-          // Store guest information in Firestore under a 'guests' collection
-          await this.firestore.collection('guests').doc(uid).set(guestData);
-        }
-      } catch (error) {
-        console.error('Registration error:', error);
-        // Handle registration errors, e.g., email already in use
-      }
+        await this.firestore.collection('guests').doc(uid).set(guestData);
+      console.log('User registered and data stored:', guestData);
       this.router.navigate(['/dashboard']);
+    } catch (error) {
+      console.error('Registration error:', error);
+      throw error;  // Propagate error to be catchable by caller
+    }
     }
   }
 

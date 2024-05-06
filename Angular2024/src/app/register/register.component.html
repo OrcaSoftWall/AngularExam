@@ -28,8 +28,8 @@
     <input type="text" formControlName="name" placeholder="Full Name" required />
     </div>
     <div>
-      <label for="attending">Attending:</label>
-    <input type="checkbox" formControlName="attending" placeholder="Attending" />
+      <label for="attending">Attending:    
+    <input type="checkbox" formControlName="attending" placeholder="Attending" /></label>
     </div>
     <div>
       <label for="group">Number of people:</label>
@@ -39,7 +39,16 @@
       <label for="accomodation">Accomodation:</label>
     <input type="text" formControlName="accomodation" placeholder="Accomodation" />
     </div>
-    
+    <!-- File input for photo upload -->
+    <div>
+      <label for="photo">Upload Photo:</label>
+      <input type="file" (change)="onFileSelected($event)" />
+    </div>
+    <!-- Additional field for photo URL -->
+  <div>
+  <label for="photoURL">or give Photo URL:</label>
+  <input type="text" formControlName="photoURL" placeholder="Photo URL (optional)" />
+  </div>
   </div>
   <button type="submit" [disabled]="!registerForm.valid">Register</button>
 </form>
