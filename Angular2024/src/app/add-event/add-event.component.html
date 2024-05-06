@@ -25,9 +25,24 @@
     <label for="description">Description:</label>
     <textarea id="description" formControlName="description"></textarea>
   </div>
-  <div>
+  <!-- <div>
     <label for="photoURL">Photo URL:</label>
     <input type="text" id="photoURL" formControlName="photoURL" />
+  </div> -->
+  <div>
+    <label for="photoMethod">Photo Method:</label>
+    <select formControlName="photoMethod">
+      <option value="url">URL</option>
+      <option value="upload">Upload</option>
+    </select>
+  </div>
+  <div *ngIf="eventForm.get('photoMethod')?.value === 'url'">
+    <label for="photoURL">Photo URL:</label>
+    <input type="text" id="photoURL" formControlName="photoURL" />
+  </div>
+  <div *ngIf="eventForm.get('photoMethod')?.value === 'upload'">
+    <label for="file">Upload Photo:</label>
+    <input type="file" id="file" (change)="onFileSelected($event)" />
   </div>
   <button type="submit" [disabled]="!eventForm.valid">
     {{ eventId ? "Update Event" : "Add Event" }}
