@@ -37,6 +37,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AuthGuardService } from './auth/auth.guard';
+import { MenuComponent } from './menu/menu.component';
+import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +46,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
+  { path: 'add-menu-item', component: AddMenuItemComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: 'edit-event/:id', component: AddEventComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: '**', redirectTo: '/404' },

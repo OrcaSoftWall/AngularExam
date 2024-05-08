@@ -27,6 +27,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { MapComponent } from './google-map/google-map.component';
 
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MenuComponent } from './menu/menu.component';
+import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 // import { environment } from '../environments/environment';
 
 @NgModule({
@@ -43,6 +45,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MainComponent,
     AddEventComponent,
     MapComponent,
+    MenuComponent,
+    AddMenuItemComponent,
   ],
   imports: [
     BrowserModule,

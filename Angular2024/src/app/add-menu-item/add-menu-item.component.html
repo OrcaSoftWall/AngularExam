@@ -1,0 +1,27 @@
+<app-header />
+<app-nav />
+<form [formGroup]="menuItemForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-field">
+    <label for="title">Title:</label>
+    <input type="text" id="title" formControlName="title" />
+  </div>
+  <div class="form-field">
+    <label for="type">Type:</label>
+    <input type="text" id="type" formControlName="type" placeholder="Type (e.g., Vegetarian)"/>
+  </div>
+  <div class="form-field">
+    <label for="ingredients">Ingredients:</label>
+    <textarea formControlName="ingredients" placeholder="Ingredients (optional)"></textarea>
+  </div>
+  <div class="form-field">
+    <label for="orderOfServing">Order Of Serving:</label>
+    <input type="number" formControlName="orderOfServing" placeholder="Order of Serving">
+  </div>
+  <div class="form-field">
+    <label for="Picture">Upload picture:</label>
+    <input type="text" formControlName="image" placeholder="Photo URL">
+    <p>or</p>
+    <input type="file" (change)="onFileSelected($event)">
+  </div>
+  <button type="submit" [disabled]="!menuItemForm.valid">Add Menu Item</button>
+</form>
