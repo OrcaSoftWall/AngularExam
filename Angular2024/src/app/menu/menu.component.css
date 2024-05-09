@@ -121,7 +121,6 @@
     flex-direction: column;
     width: 35vw;
     margin: 20px auto;
-    background-color: #F9FFD9;
   }
   
   .menu-item {
@@ -130,6 +129,7 @@
     margin-bottom: 10px; /* Space between items */
     display: flex;
     flex-direction: column; /* Stack image and details vertically */
+    background-color: #F9FFD9;
   }
   
   .menu-image {

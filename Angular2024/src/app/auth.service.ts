@@ -73,13 +73,6 @@ export class AuthService {
 
         let finalPhotoURL = photoURL;
 
-        // if (file) {
-        //   const filePath = `profile_photos/${uid}`;
-        //   const fileRef = this.storage.ref(filePath);
-        //   const result = await this.storage.upload(filePath, file);
-        //   finalPhotoURL = await fileRef.getDownloadURL();
-        // }
-
         if (file) {
           const filePath = `profile_photos/${uid}`;
           const fileRef = this.storage.ref(filePath);
@@ -178,3 +171,5 @@ export class AuthService {
     );
   }
 }
+
+

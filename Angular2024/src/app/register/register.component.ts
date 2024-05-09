@@ -13,15 +13,6 @@ export class RegisterComponent {
   selectedFile?: File;
   
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
-    // this.registerForm = this.fb.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: ['', [Validators.required, Validators.minLength(6)]],
-    //   name: ['', Validators.required],
-    //   attending: [false], 
-    //   group: [0], 
-    //   accomodation: [''],
-    //   role:['guest'], 
-    // });
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,8 +26,6 @@ export class RegisterComponent {
     
   }
   
-  
-
 onFileSelected(event: Event) {
   const target = event.target as HTMLInputElement;
   const files = target.files as FileList;
@@ -58,23 +47,8 @@ onRegister() {
   } else {
     console.error('Form is not valid');
     // Optionally show form validation error message to user
+
   }
 }
-
-
-  // No need to pass arguments since you're accessing this.registerForm.value directly
-// onRegister() {
-//   if (this.registerForm.valid) {
-//     const { email, password, name, attending, group, accomodation, role } = this.registerForm.value;
-//     this.authService.register(email, password, name, attending, group, accomodation, role)
-//       .then(() => {
-//         console.log('Registration successful');
-//         this.router.navigate(['/dashboard']);
-//       }).catch(error => {
-//         console.error('Registration failed', error);
-//       });
-//   }
-// }
-
 }
 

@@ -5,7 +5,6 @@
   <div>
     <label for="email">Email:</label>
     <input type="email" formControlName="email" id="email" />
-    <!-- Display errors -->
     <div  class="alert" *ngIf="registerForm.get('email')?.errors?.['required']">
       Email is required.
     </div>
@@ -16,7 +15,6 @@
   <div>
     <label for="password">Password:</label>
     <input type="password" formControlName="password" id="password" />
-    <!-- Display errors -->
     <div  class="alert" *ngIf="registerForm.get('password')?.errors?.['required']">
       Password is required.
     </div>
@@ -39,12 +37,12 @@
       <label for="accomodation">Accomodation:</label>
     <input type="text" formControlName="accomodation" placeholder="Accomodation" />
     </div>
-    <!-- File input for photo upload -->
+
     <div>
       <label for="photo">Upload Photo:</label>
       <input type="file" (change)="onFileSelected($event)" />
     </div>
-    <!-- Additional field for photo URL -->
+
   <div>
   <label for="photoURL">or give Photo URL:</label>
   <input type="text" formControlName="photoURL" placeholder="Photo URL (optional)" />
@@ -52,3 +50,8 @@
   </div>
   <button type="submit" [disabled]="!registerForm.valid">Register</button>
 </form>
+
+
+
+
+
