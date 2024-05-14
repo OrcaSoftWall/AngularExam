@@ -10,13 +10,13 @@
 .guest-card {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: 0.3s;
-    width: 80%; /* Adjust width as necessary */
+    width: 40%; /* Adjust width as necessary */
     margin: 10px 0;
-    background: #fff;
+    background: #f9ffd988;
     padding: 20px;
     border-radius: 8px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -24,15 +24,15 @@
 .guest-photo {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
+    border-radius: 5%;
     object-fit: cover;
     border: 3px solid #eee; /* Light grey border */
 }
 
 /* Guest name and details styling */
 .guest-info {
-    text-align: center;
-    margin-top: 10px;
+    /* text-align: center; */
+    margin: 10px 0 0 30px;
 }
 
 .guest-name {
