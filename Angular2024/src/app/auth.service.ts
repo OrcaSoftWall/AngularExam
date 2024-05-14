@@ -92,7 +92,7 @@ export class AuthService {
           group,
           accomodation,
           role,
-          finalPhotoURL
+          finalPhotoURL,
         };
 
         await this.firestore.collection('guests').doc(uid).set(guestData);

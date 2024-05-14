@@ -29,6 +29,8 @@ import { MapComponent } from './google-map/google-map.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MenuComponent } from './menu/menu.component';
 import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
+import { CommonModule } from '@angular/common';
+import { GuestsComponent } from './guests/guests.component';
 // import { environment } from '../environments/environment';
 
 @NgModule({
@@ -47,6 +49,7 @@ import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
     MapComponent,
     MenuComponent,
     AddMenuItemComponent,
+    GuestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
     FormsModule,
     GoogleMapsModule, 
     RouterModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

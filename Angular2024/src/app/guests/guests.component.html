@@ -1,0 +1,16 @@
+<app-header />
+<app-nav />
+<div class="guests-container">
+    <div *ngFor="let guest of guests$ | async" class="guest-card">
+        <img [src]="guest.finalPhotoURL" alt="{{ guest.name }}" class="guest-photo">
+        <div class="guest-info">
+            <div class="guest-name">{{ guest.name }}</div>
+            <div class="guest-details">
+                Role: {{ guest.role }}
+                <br>
+                Group: {{ guest.group }}
+            </div>
+        </div>
+    </div>
+</div>
+

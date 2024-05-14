@@ -17,6 +17,9 @@
     <a *ngIf="userService.isLogged | async" routerLink="/dashboard"
       >Dashboard</a
     >
+    <a *ngIf="userService.isLogged | async" routerLink="/guests"
+    >Guests</a
+  >
     <a *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)" routerLink="/add-event"
       >Add Event</a
     >

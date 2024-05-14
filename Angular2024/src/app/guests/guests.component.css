@@ -1,0 +1,54 @@
+/* Container for all guest cards */
+.guests-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Individual guest card */
+.guest-card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width: 80%; /* Adjust width as necessary */
+    margin: 10px 0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Guest photo */
+.guest-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #eee; /* Light grey border */
+}
+
+/* Guest name and details styling */
+.guest-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.guest-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.guest-details {
+    font-size: 16px;
+    color: #666; /* Dark grey for text */
+    margin-top: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .guest-card {
+        width: 90%;
+    }
+}
