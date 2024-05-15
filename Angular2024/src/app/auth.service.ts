@@ -87,6 +87,7 @@ export class AuthService {
 
         // Construct the guest object
         const guestData: Guest = {
+          id:uid,
           name,
           email,
           attending,

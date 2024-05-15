@@ -11,6 +11,8 @@ export class GuestService {
   constructor(private firestore: AngularFirestore) {}
 
   getGuests(): Observable<Guest[]> {
-    return this.firestore.collection<Guest>('guests', ref => ref.orderBy('role', 'desc')).valueChanges();
+      return this.firestore.collection<Guest>('guests', ref => ref.orderBy('role', 'desc')).valueChanges();
+    //   return this.firestore.collection<Guest>('guests', ref => ref.orderBy('registrationTime', 'desc')).valueChanges();
+
   }
 }
