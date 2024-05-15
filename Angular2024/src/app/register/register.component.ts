@@ -54,8 +54,8 @@ onFileSelected(event: Event) {
 
 onRegister() {
   if (this.registerForm.valid) {
-    const { email, password, name, attending, group, accomodation, role, photoURL } = this.registerForm.value;
-    this.authService.register(email, password, name, attending, group, accomodation, role, photoURL, this.selectedFile)
+    const { email, password, name, attending, group, accomodation, role, photoURL, country, city  } = this.registerForm.value;
+    this.authService.register(email, password, name, attending, group, accomodation, role, photoURL, this.selectedFile, country, city )
       .then(() => {
         console.log('Registration successful');
         this.router.navigate(['/dashboard']);

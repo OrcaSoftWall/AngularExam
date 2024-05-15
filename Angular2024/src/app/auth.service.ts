@@ -60,6 +60,8 @@ export class AuthService {
     role: string, 
     photoURL: string, 
     file?: File,
+    country?: string,
+    city?: string
   ) {
     {
       // const { email, password, name, attending, group, accomodation } = formData;
@@ -94,8 +96,8 @@ export class AuthService {
           role,
           finalPhotoURL,
           registrationTime: new Date().toISOString(),
-          // country,
-          // city,
+          country,
+          city,
         };
 
         await this.firestore.collection('guests').doc(uid).set(guestData);

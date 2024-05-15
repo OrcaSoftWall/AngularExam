@@ -9,6 +9,8 @@
                 Role: {{ guest.role }}
                 <br>
                 People attending: {{ guest.group }}
+                <br>
+                Travelling from: {{guest.city}} - {{guest.country}}
             </div>
             <!-- <div *ngFor="let guest of guests$ | async">
                 <p>{{ guest.name }} - Travelling from: {{ guest.travelOrigin || 'Not specified' }}</p>
