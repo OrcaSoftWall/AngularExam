@@ -64,7 +64,6 @@ export class AuthService {
     city?: string
   ) {
     {
-      // const { email, password, name, attending, group, accomodation } = formData;
       try {
         const userCredential = await this.afAuth.createUserWithEmailAndPassword(
           email,
