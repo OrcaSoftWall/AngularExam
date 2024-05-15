@@ -26,14 +26,13 @@
         (mapClick)="openInfoWindow(marker, infoWindow)"
       >
         <map-info-window #infoWindow="mapInfoWindow" class="popup">
-          <img
-            class="card-img-popup"
-            [src]="event.photoURL"
-            alt="Event image"
-          />
+            <img class="card-img-popup" [src]="event.photoURL" alt="Event image" />
           <div>
             <h3>{{ event.title }}</h3>
-            <p><strong>{{event.date | date: "dd.MM.yyyy" }}</strong>  {{ event.time }} Hrs</p>
+            <p>
+              <strong>{{ event.date | date : "dd.MM.yyyy" }}</strong>
+              {{ event.time }} Hrs
+            </p>
             <p>{{ event.description | slice : 0 : 100 }}</p>
             <div *ngIf="authService.currentUser$ | async" class="but">
               <a

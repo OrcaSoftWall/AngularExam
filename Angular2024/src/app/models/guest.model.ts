@@ -7,5 +7,8 @@ export interface Guest {
     accomodation: string;
     role: string;
     finalPhotoURL?: string;
+    registrationTime?: string;
+    country?: string;
+    city?: string;
   }
   

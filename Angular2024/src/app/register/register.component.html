@@ -34,6 +34,23 @@
     <input type="number" formControlName="group" min="1" max="15" value="1" step="1" />
     </div>
     <div>
+      <label for="country">Country:</label>
+      <select formControlName="country" id="country">
+        <option value="Slovakia">Slovakia</option>
+        <option value="Czech Republic">Czech Republic</option>
+        <option value="Bulgaria">Bulgaria</option>
+        <option value="Germany">Germany</option>
+        <option value="Malta">Malta</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div>
+      <label for="city">City:</label>
+      <select formControlName="city" id="city">
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+      </select>
+    </div>
+     <div>
       <label for="accomodation">Accomodation:</label>
     <input type="text" formControlName="accomodation" placeholder="Accomodation" />
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service'; 
 import { Router } from '@angular/router';
@@ -11,6 +11,16 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   registerForm: FormGroup;
   selectedFile?: File;
+  cities: string[] = [];
+
+  private cityOptions: { [key: string]: string[] } = {
+    'Slovakia': ['Bratislava', 'Zilina', 'Other'],
+    'Czech Republic': ['Praha', 'Brno', 'Other'],
+    'Bulgaria': ['Sofia', 'Stara Zagora', 'Botevgrad', 'Other'],
+    'Germany': ['Berlin', 'Nürnberg', 'Other'],
+    'Malta': ['Valletta', 'Marsaxlokk', 'Other'],
+    'other': ['Other']
+  };
   
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
@@ -21,11 +31,19 @@ export class RegisterComponent {
       group: [0], 
       accomodation: [''],
       role: ['guest'],
-      photoURL: [''] // Optional field for direct URL input
+      photoURL: [''], // Optional field for direct URL input
+      country: ['', Validators.required],
+      city: ['', Validators.required]
     });
-    
   }
   
+  ngOnInit(): void {
+    this.registerForm.get('country')!.valueChanges.subscribe(country => {
+      this.cities = this.cityOptions[country] || [];
+      this.registerForm.get('city')!.setValue(''); // Reset city when country changes
+    });
+  }
+
 onFileSelected(event: Event) {
   const target = event.target as HTMLInputElement;
   const files = target.files as FileList;

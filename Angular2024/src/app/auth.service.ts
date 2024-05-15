@@ -93,6 +93,9 @@ export class AuthService {
           accomodation,
           role,
           finalPhotoURL,
+          registrationTime: new Date().toISOString(),
+          // country,
+          // city,
         };
 
         await this.firestore.collection('guests').doc(uid).set(guestData);
