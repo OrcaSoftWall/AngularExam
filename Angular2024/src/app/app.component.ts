@@ -10,10 +10,11 @@
 // }
 
 
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { Router, NavigationEnd, Event as RouterEvent } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderService } from './services/header.service';
+import { EnvironmentService } from './services/environment.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ import { HeaderService } from './services/header.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router, private headerService: HeaderService) {
+  constructor(private router: Router, private headerService: HeaderService, private envService: EnvironmentService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: RouterEvent) => {
@@ -34,6 +35,13 @@ export class AppComponent {
         }
       }
     });
+  }
+  ngOnInit() {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${this.envService.googleMapsApiKey}`;
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
   }
 }
 
