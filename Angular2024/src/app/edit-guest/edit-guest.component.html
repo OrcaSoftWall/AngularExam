@@ -1,0 +1,87 @@
+<!-- <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <input formControlName="name" type="text" placeholder="Name">
+    <input formControlName="attending" type="checkbox"> Attending
+    <input formControlName="group" type="number" placeholder="Number of People">
+    <input formControlName="accomodation" type="text" placeholder="Accomodation">
+    <input formControlName="country" type="text" placeholder="Country">
+    <input formControlName="city" type="text" placeholder="City">
+    <button type="submit" [disabled]="!editForm.valid">Update Profile</button>
+  </form> -->
+
+
+<!--   
+  <app-header />
+<app-nav />
+<h1>Edit Profile</h1>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" formControlName="name" id="name" />
+  </div>
+  <div>
+    <label for="group">Number of people:</label>
+    <input type="number" formControlName="group" id="group" />
+  </div>
+  <div>
+    <label for="accomodation">Accommodation:</label>
+    <input type="text" formControlName="accomodation" id="accomodation" />
+  </div>
+  <div>
+    <label for="country">Country:</label>
+    <input type="text" formControlName="country" />
+  </div>
+  <div>
+    <label for="city">City:</label>
+    <input type="text" formControlName="city" />
+  </div>
+  <div>
+    <label for="file">Upload New Photo:</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+  <div>
+    <label for="photoURL">or Enter Photo URL:</label>
+    <input type="text" formControlName="photoURL" id="photoURL" />
+  </div>
+  <button type="submit" [disabled]="!editForm.valid">Save Changes</button>
+</form> -->
+
+
+
+<app-header />
+<app-nav />
+<h1>Edit Profile</h1>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" formControlName="name" id="name" />
+  </div>
+  <div>
+    <label for="attending">Attending:</label>
+    <input type="checkbox" formControlName="attending" />
+  </div>
+  <div>
+    <label for="group">Number of people:</label>
+    <input type="number" formControlName="group" />
+  </div>
+  <div>
+    <label for="accomodation">Accomodation:</label>
+    <input type="text" formControlName="accomodation" />
+  </div>
+  <div>
+    <label for="country">Country:</label>
+    <input type="text" formControlName="country" />
+  </div>
+  <div>
+    <label for="city">City:</label>
+    <input type="text" formControlName="city" />
+  </div>
+  <div>
+    <label for="photo">Upload Photo:</label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </div>
+  <div>
+    <label for="photoURL">or Photo URL:</label>
+    <input type="text" formControlName="photoURL" />
+  </div>
+  <button type="submit" [disabled]="!editForm.valid">Save Changes</button>
+</form>

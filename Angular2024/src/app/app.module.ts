@@ -31,6 +31,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 import { CommonModule } from '@angular/common';
 import { GuestsComponent } from './guests/guests.component';
+import { EditGuestComponent } from './edit-guest/edit-guest.component';
 // import { environment } from '../environments/environment';
 
 @NgModule({
@@ -50,6 +51,7 @@ import { GuestsComponent } from './guests/guests.component';
     MenuComponent,
     AddMenuItemComponent,
     GuestsComponent,
+    EditGuestComponent,
   ],
   imports: [
     BrowserModule,

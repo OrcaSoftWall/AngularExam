@@ -13,6 +13,16 @@ export class GuestService {
   getGuests(): Observable<Guest[]> {
       return this.firestore.collection<Guest>('guests', ref => ref.orderBy('role', 'desc')).valueChanges();
     //   return this.firestore.collection<Guest>('guests', ref => ref.orderBy('registrationTime', 'desc')).valueChanges();
+  }
 
+  getGuestById(id: string): Observable<Guest | undefined> {
+    return this.firestore.doc<Guest>(`guests/${id}`).valueChanges();
+  }
+
+  // updateGuest(id: string, guestData: Guest): Promise<void> {
+  //   return this.firestore.doc(`guests/${id}`).update(guestData);
+  // }
+  updateGuest(id: string, data: Partial<Guest>): Promise<void> {
+    return this.firestore.doc<Guest>(`guests/${id}`).update(data);
   }
 }

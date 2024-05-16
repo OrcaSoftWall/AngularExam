@@ -2,25 +2,26 @@
   <div class="links">
     <a routerLink="/">Home</a>
     <a *ngIf="!(userService.isLogged | async)" routerLink="/dashboard"
-    >Dashboard</a
-  >
+      >Dashboard</a
+    >
     <a *ngIf="!(userService.isLogged | async)" routerLink="/login">Login</a>
     <a *ngIf="!(userService.isLogged | async)" routerLink="/register"
       >Register</a
     >
-    <a *ngIf="userService.isLogged | async" routerLink="/menu"
-      >Menu</a
+    <a *ngIf="userService.isLogged | async" routerLink="/menu">Menu</a>
+    <a
+      *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)"
+      routerLink="/add-menu-item"
+      >Add Menu Item</a
     >
-    <a *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)" routerLink="/add-menu-item"
-    >Add Menu Item</a
-  >
     <a *ngIf="userService.isLogged | async" routerLink="/dashboard"
       >Dashboard</a
     >
-    <a *ngIf="userService.isLogged | async" routerLink="/guests"
-    >Guests</a
-  >
-    <a *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)" routerLink="/add-event"
+    <a *ngIf="userService.isLogged | async" routerLink="/guests">Guests</a>
+    <a *ngIf="userService.isLogged | async" routerLink="/edit-guest">Edit my profile</a>
+    <a
+      *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)"
+      routerLink="/add-event"
       >Add Event</a
     >
     <a *ngIf="userService.isLogged | async" (click)="userService.logout()"
@@ -29,7 +30,7 @@
   </div>
   <div class="username">
     <span *ngIf="authService.currentUserDetails$ | async as userDetails">
-      {{ userDetails.name || userDetails.email }} 
+      {{ userDetails.name || userDetails.email }}
     </span>
   </div>
 </nav>
