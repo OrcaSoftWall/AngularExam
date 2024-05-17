@@ -105,11 +105,21 @@
     flex: 0 0 50%;
     max-width: 50%;
   }
+
+  .btn-primary {
+    padding: 0.15rem 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
 }
 
 @media (max-width: 768px) {
   .col-sm-4 {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  .card-body {
+    font-size: 0.8rem;
   }
 }
