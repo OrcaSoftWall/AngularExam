@@ -3,7 +3,7 @@ name: Deploy to Firebase Hosting
 on:
   push:
     branches:
-      - master  # Change this to your default branch if necessary
+      - master
 
 jobs:
   build:
@@ -18,11 +18,16 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Navigate to project directory
+        run: cd Angular2024
+
       - name: Install dependencies
         run: npm install
+        working-directory: Angular2024
 
       - name: Build Angular project
         run: npm run build -- --configuration production
+        working-directory: Angular2024
 
       - name: Deploy to Firebase Hosting
         uses: w9jds/firebase-action@v2.2.0
@@ -30,6 +35,8 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        working-directory: Angular2024
+
 
 
 
