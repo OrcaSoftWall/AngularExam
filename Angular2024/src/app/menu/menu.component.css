@@ -151,3 +151,12 @@
     font-size: 18px; 
   }
   
+  /* Mobile styles */
+@media (max-width: 768px) {
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: 10px auto;
+  }
+}
