@@ -26,7 +26,7 @@ jobs:
         working-directory: Angular2024
 
       - name: Build Angular project
-        run: npm run build -- --configuration production
+        run: npm run build 
         working-directory: Angular2024
 
       - name: Deploy to Firebase Hosting
