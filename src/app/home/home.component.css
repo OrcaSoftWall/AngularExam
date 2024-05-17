@@ -68,3 +68,34 @@ footer p:last-child {
     font-size: 1.1rem;
     font-style: italic;
 }
+
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    article{
+        padding: 0 0.5em;
+    }
+    
+    section {
+        padding: 15px;
+    }
+    
+    section h2 {
+        font-size: 1.2rem;
+    }
+    
+    section p {
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    
+    strong {
+        color: #d35400; /* A strong color for important names and dates */
+    }
+    
+}
