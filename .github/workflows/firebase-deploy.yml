@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Navigate to project directory
-        run: cd Angular2024
+        run: cd angular2024
 
       - name: Install dependencies
         run: npm install
