@@ -114,8 +114,6 @@
     }
   }
   
-
-/* Specific styles for menu items */
 .menu-container {
     display: flex;
     flex-direction: column;
@@ -126,15 +124,15 @@
   .menu-item {
     border: 1px solid #ddd;
     padding: 15px;
-    margin-bottom: 10px; /* Space between items */
+    margin-bottom: 10px; 
     display: flex;
-    flex-direction: column; /* Stack image and details vertically */
+    flex-direction: column;
     background-color: #F9FFD9;
   }
   
   .menu-image {
-    width: 100%; /* Adjust as necessary */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%; 
+    height: auto; 
     margin-bottom: 10px;
   }
   
@@ -150,6 +148,6 @@
   }
   
   .menu-details h3 {
-    font-size: 18px; /* Smaller font size for smaller screens */
+    font-size: 18px; 
   }
   
