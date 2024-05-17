@@ -50,6 +50,28 @@ nav a:hover {
   border-radius: 0 0 15px 15px;
 }
 
+
+/* medium styles */
+@media (max-width: 1310px) {
+  nav {
+    align-items: flex-start;
+    font-size: 15px;
+  }
+
+  nav .links.show {
+    display: flex;
+    flex-grow: 0 1 auto;
+  }
+
+  nav .username {
+    position: static;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+}
+
+
 /* Mobile styles */
 @media (max-width: 768px) {
   nav {
