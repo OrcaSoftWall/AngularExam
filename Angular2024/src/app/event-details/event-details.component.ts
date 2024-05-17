@@ -5,7 +5,6 @@ import { Event } from '../models/event.model';
 import { Comment } from '../models/comment.model';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { Observable, defer } from 'rxjs';
 
 @Component({
   selector: 'app-event-details',

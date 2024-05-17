@@ -1,15 +1,22 @@
-
+/* Base styles */
 nav {
   width: 100%;
   display: flex;
-  justify-content: space-between; /* Adjusted to space-between */
-  align-items: center; /* Ensure vertical alignment is centered */
+  justify-content: space-between;
+  align-items: center;
   border-top: 3px solid pink;
   position: sticky;
-  top: 0; /* Ensure nav sticks to the top */
+  top: 0;
   background-color: rgb(249, 255, 217);
-  padding: 0 20px; /* Add padding on the sides */
+  padding: 0 20px;
   z-index: 2;
+}
+
+nav .menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 20px;
 }
 
 nav .links,
@@ -20,25 +27,61 @@ nav .username {
 
 nav .links {
   justify-content: center;
-  flex-grow: 1; /* Allows the links section to grow */
+  flex-grow: 1;
 }
 
 nav .username {
   position: absolute;
   right: 15px;
-  flex-grow: 0; /* Prevents the username section from growing */
-  margin-left: auto; /* Automatically pushes username to the right */
-  padding-left: 20px; /* Adds some spacing between links and username */
+  flex-grow: 0;
+  margin-left: auto;
+  padding-left: 20px;
 }
 
 nav a {
-  padding: 10px 15px; /* Adjusted padding for better spacing */
+  padding: 10px 15px;
   color: black;
-  text-decoration: none; /* Removes underline from links */
+  text-decoration: none;
 }
 
 nav a:hover {
   color: purple;
   background-color: pink;
-  border-radius: 0 0 15px 15px; /* Rounded corners for hover effect */
+  border-radius: 0 0 15px 15px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav .menu-toggle {
+    display: block;
+  }
+
+  nav .links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  nav .links.show {
+    display: flex;
+  }
+
+  nav .username {
+    position: static;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  nav a {
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+  }
 }
