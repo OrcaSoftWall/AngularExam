@@ -6,11 +6,11 @@
         <div class="guest-info">
             <div class="guest-name">{{ guest.name }}</div>
             <div class="guest-details">
-                Role: {{ guest.role }}
+                <strong>Role:</strong> {{ guest.role }}
                 <br>
-                People attending: {{ guest.group }}
+                <strong>People attending:</strong> {{ guest.group }}
                 <br>
-                Travelling from: {{guest.city}} - {{guest.country}}
+                <strong>Travelling from:</strong> {{guest.city}} - {{guest.country}}
             </div>
             <!-- <div *ngFor="let guest of guests$ | async">
                 <p>{{ guest.name }} - Travelling from: {{ guest.travelOrigin || 'Not specified' }}</p>

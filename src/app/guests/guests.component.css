@@ -47,8 +47,9 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .guest-card {
         width: 90%;
+    flex-direction: column;
     }
 }

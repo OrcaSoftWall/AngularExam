@@ -19,6 +19,7 @@ export class RegisterComponent {
     'Bulgaria': ['Sofia', 'Stara Zagora', 'Botevgrad', 'Other'],
     'Germany': ['Berlin', 'Nürnberg', 'Other'],
     'Malta': ['Valletta', 'Marsaxlokk', 'Other'],
+    'UK': ['London', 'Southampton', 'Other'],
     'other': ['Other']
   };
   
