@@ -1,16 +1,6 @@
 <!-- <app-header />
 <app-nav />
-<div *ngFor="let item of menuItems$ | async">
-  <img [src]="item.image" alt="{{ item.title }}" />
-  <h3>{{ item.title }}</h3>
-  <p>{{ item.type }}</p>
-  <p *ngIf="item.ingredients">Ingredients: {{ item.ingredients }}</p>
-  <button *ngIf="item.id" (click)="likeItem(item.id)">Like ({{ item.likes || 0 }})</button>
-</div> -->
-
-<app-header />
-<app-nav />
-<div class="menu-container"> <!-- Use a specific class to target styling -->
+<div class="menu-container"> 
   <div *ngFor="let item of menuItems$ | async" class="menu-item">
     <img [src]="item.image" alt="{{ item.title }}" class="menu-image"/>
     <div class="menu-details">
@@ -18,6 +8,29 @@
       <p>{{ item.type }}</p>
       <p *ngIf="item.ingredients">Ingredients: {{ item.ingredients }}</p>
       <button *ngIf="item.id" (click)="likeItem(item.id)">Like ({{ item.likes || 0 }})</button>
+    </div>
+  </div>
+</div> -->
+
+<app-header />
+<app-nav />
+<div class="menu-container">
+  <div *ngFor="let item of menuItems$ | async" class="menu-item">
+    <img [src]="item.image" alt="{{ item.title }}" class="menu-image" />
+    <div class="menu-details">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.type }}</p>
+      <p *ngIf="item.ingredients">Ingredients: {{ item.ingredients }}</p>
+      <div class="button-like">
+        <button
+          class="btn-primary"
+          *ngIf="item.id"
+          (click)="toggleLike(item.id)"
+        >
+          Like ({{ item.likes || 0 }})
+        </button>
+        <p>{{ item.liked ? "Liked" : "" }}</p>
+      </div>
     </div>
   </div>
 </div>

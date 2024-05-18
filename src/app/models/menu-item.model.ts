@@ -6,5 +6,7 @@ export interface MenuItem {
     ingredients?: string; // Optional
     order: number; // For sorting
     likes?: number; // Optional, default to 0
+    likedBy?: string[];
+    liked?: boolean;
   }
   
