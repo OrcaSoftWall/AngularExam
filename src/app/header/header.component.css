@@ -33,4 +33,7 @@ header.shrunk .header-image {
   header {
     height: 90vh; 
   }
+  :not(.shrunk) {
+    height: 90vh;
+  }
 }
