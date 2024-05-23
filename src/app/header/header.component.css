@@ -28,3 +28,9 @@ header.shrunk .header-image {
 :not(.shrunk) {
   height: 95vh;
 }
+
+@media (max-width: 768px) {
+  header {
+    height: 90vh; 
+  }
+}

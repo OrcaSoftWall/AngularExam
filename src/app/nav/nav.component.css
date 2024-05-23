@@ -64,7 +64,7 @@ nav a:hover {
   }
 
   nav .username {
-    position: static;
+    /* position: static; */
     margin-left: 0;
     padding-left: 0;
     margin-top: 10px;
@@ -95,7 +95,7 @@ nav a:hover {
   }
 
   nav .username {
-    position: static;
+    /* position: static; */
     margin-left: 0;
     padding-left: 0;
     margin-top: 10px;
