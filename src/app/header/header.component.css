@@ -31,9 +31,9 @@ header.shrunk .header-image {
 
 @media (max-width: 768px) {
   header {
-    height: 90vh; 
+    height: 85vh; 
   }
   :not(.shrunk) {
-    height: 90vh;
+    height: 85vh;
   }
 }

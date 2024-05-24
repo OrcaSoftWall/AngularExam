@@ -1,0 +1,23 @@
+<app-header />
+<app-nav />
+<div class="guest-book-container">
+  <h2>Guest Book</h2>
+  <form [formGroup]="guestBookForm" (ngSubmit)="onSubmit()">
+    <textarea formControlName="message" placeholder="Write your wish..."></textarea>
+    <button type="submit" [disabled]="!guestBookForm.valid">Submit</button>
+  </form>
+
+  <div class="guest-book-entry" *ngFor="let entry of guestBookEntries$ | async">
+    <p><strong>{{ entry.authorName }}:</strong> {{ entry.message }}</p>
+    <small>{{ entry.timestamp | date: 'short' }}</small>
+    <button *ngIf="canEdit(entry)" (click)="editEntry(entry)">Edit</button>
+    <button *ngIf="canEdit(entry)" (click)="entry.id ? deleteEntry(entry.id) : null">Delete</button>
+
+    <div *ngIf="editingEntryId === entry.id">
+      <textarea [(ngModel)]="editingEntryMessage" required></textarea>
+      <button (click)="updateEntry(entry.id)">Save</button>
+      <button (click)="cancelEdit()">Cancel</button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,68 @@
+.guest-book-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .guest-book-container h2 {
+    text-align: center;
+  }
+  
+  .guest-book-container form {
+    margin-bottom: 20px;
+  }
+  
+  .guest-book-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .guest-book-container button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .guest-book-container button[disabled] {
+    background-color: #ccc;
+  }
+  
+  .guest-book-entry {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .guest-book-entry p {
+    margin: 0;
+  }
+  
+  .guest-book-entry small {
+    color: #777;
+  }
+  
+  .guest-book-entry button {
+    margin-right: 10px;
+    background-color: #dc3545; /* Red for delete */
+  }
+  
+  .guest-book-entry button:nth-child(2) {
+    background-color: #007bff; /* Blue for edit */
+  }
+  
+  .guest-book-entry textarea {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
