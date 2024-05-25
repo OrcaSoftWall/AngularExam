@@ -26,8 +26,10 @@
 <app-nav></app-nav>
 
 <div class="guest-book-container">
-  <h1>Guest Book</h1>
-
+  <h2>Guest Book</h2>
+    <div class="message-to-guests">
+        Dear guests, Please share with us and the rest of the guests your thoughts, wishes and greetings!
+    </div>
   <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
     <textarea formControlName="text" placeholder="Write your wish..."></textarea>
     <button type="submit">{{ editingEntryId ? 'Update' : 'Post' }}</button>
