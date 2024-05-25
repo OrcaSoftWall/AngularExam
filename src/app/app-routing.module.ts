@@ -41,6 +41,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 import { GuestsComponent } from './guests/guests.component';
 import { EditGuestComponent } from './edit-guest/edit-guest.component';
+import { GuestBookComponent } from './guest-book/guest-book.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'edit-event/:id', component: AddEventComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },
   { path: 'guests', component: GuestsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'edit-guest', component: EditGuestComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
+  { path: 'guest-book', component: GuestBookComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: '**', redirectTo: '/404' },
 ];
 
