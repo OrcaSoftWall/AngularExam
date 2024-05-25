@@ -15,6 +15,7 @@ header h1 {
     font-size: 2.5rem;
     color: #444;
     padding-bottom: 20px;
+    text-shadow: 1px 1px #ffffc0;
 }
 
 article{
@@ -41,7 +42,7 @@ section p {
     margin-bottom: 15px;
 }
 
-strong {
+strong,a {
     color: #d35400; /* A strong color for important names and dates */
 }
 
