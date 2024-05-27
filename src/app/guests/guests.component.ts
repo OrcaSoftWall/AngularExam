@@ -84,7 +84,8 @@ export class GuestsComponent implements OnInit {
     });
   
     this.guests$ = this.authService.getCurrentUserId().pipe(
-      switchMap(userId => this.guestService.getGuests().pipe(
+      // switchMap(userId => this.guestService.getGuests().pipe(
+        switchMap(userId => this.guestService.getNonBrideGroomGuests().pipe(
         map(guests => {
           const currentUser = guests.find(guest => guest.id === userId);
           const otherGuests = guests.filter(guest => guest.id !== userId);

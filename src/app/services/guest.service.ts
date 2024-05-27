@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Guest } from '../models/guest.model';
 
 
@@ -11,8 +11,8 @@ export class GuestService {
   constructor(private firestore: AngularFirestore) {}
 
   getGuests(): Observable<Guest[]> {
-      return this.firestore.collection<Guest>('guests', ref => ref.orderBy('role', 'desc')).valueChanges();
-    //   return this.firestore.collection<Guest>('guests', ref => ref.orderBy('registrationTime', 'desc')).valueChanges();
+      // return this.firestore.collection<Guest>('guests', ref => ref.orderBy('role', 'desc')).valueChanges();
+      return this.firestore.collection<Guest>('guests', ref => ref.orderBy('registrationTime', 'desc')).valueChanges();
   }
 
   getGuestById(id: string): Observable<Guest | undefined> {
@@ -24,5 +24,11 @@ export class GuestService {
   // }
   updateGuest(id: string, data: Partial<Guest>): Promise<void> {
     return this.firestore.doc<Guest>(`guests/${id}`).update(data);
+  }
+
+  getNonBrideGroomGuests(): Observable<Guest[]> {
+    return this.firestore.collection<Guest>('guests').valueChanges().pipe(
+      map(guests => guests.filter(guest => guest.role !== 'bride' && guest.role !== 'groom'))
+    );
   }
 }

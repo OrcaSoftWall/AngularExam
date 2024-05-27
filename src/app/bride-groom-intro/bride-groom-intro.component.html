@@ -1,0 +1,16 @@
+<app-header />
+<app-nav />
+<div *ngIf="bride">
+    <h2>Meet the Bride</h2>
+    <img [src]="bride.finalPhotoURL" alt="{{ bride.name }}" class="intro-photo"/>
+    <p>{{ bride.name }}</p>
+    <!-- <p>{{ bride.description }}</p>  -->
+  </div>
+  
+  <div *ngIf="groom">
+    <h2>Meet the Groom</h2>
+    <img [src]="groom.finalPhotoURL" alt="{{ groom.name }}" class="intro-photo"/>
+    <p>{{ groom.name }}</p>
+    <!-- <p>{{ groom.description }}</p> -->
+  </div>
+  

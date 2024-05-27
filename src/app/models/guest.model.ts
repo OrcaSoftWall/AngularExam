@@ -10,5 +10,6 @@ export interface Guest {
     registrationTime?: string;
     country?: string;
     city?: string;
+    description?: string;
   }
   

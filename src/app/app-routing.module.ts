@@ -42,12 +42,14 @@ import { AddMenuItemComponent } from './add-menu-item/add-menu-item.component';
 import { GuestsComponent } from './guests/guests.component';
 import { EditGuestComponent } from './edit-guest/edit-guest.component';
 import { GuestBookComponent } from './guest-book/guest-book.component';
+import { BrideGroomIntroComponent } from './bride-groom-intro/bride-groom-intro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'bride-groom', component: BrideGroomIntroComponent },
   { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'menu', component: MenuComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'add-menu-item', component: AddMenuItemComponent, canActivate: [AuthGuardService], data: { roles: ['groom', 'bride', 'organizer'] } },

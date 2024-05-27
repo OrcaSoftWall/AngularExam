@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 import { GuestsComponent } from './guests/guests.component';
 import { EditGuestComponent } from './edit-guest/edit-guest.component';
 import { GuestBookComponent } from './guest-book/guest-book.component';
+import { BrideGroomIntroComponent } from './bride-groom-intro/bride-groom-intro.component';
 // import { environment } from '../environments/environment';
 
 @NgModule({
@@ -54,6 +55,7 @@ import { GuestBookComponent } from './guest-book/guest-book.component';
     GuestsComponent,
     EditGuestComponent,
     GuestBookComponent,
+    BrideGroomIntroComponent
   ],
   imports: [
     BrowserModule,
