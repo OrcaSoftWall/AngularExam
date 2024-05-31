@@ -1,3 +1,8 @@
+main {
+    background: #ffffff url('https://img.freepik.com/premium-photo/top-view-wedding-floral-frame_23-2148242389.jpg?w=4600') no-repeat;
+    background-size: cover;
+}
+
 .intro-photo {
     width: 200px;
     height: 200px;
@@ -30,8 +35,8 @@
     width: 55vw;
     border-radius: 8px;
     box-shadow: 0 2px 4px #0000001a;
-    margin: 20px auto;
-    background-color: #ffe;
+    margin: 20px auto 0;
+    background-color: #ffe; 
   }
 
   .top {
