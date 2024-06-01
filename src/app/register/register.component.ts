@@ -18,7 +18,7 @@ export class RegisterComponent {
     'Czech Republic': ['Praha', 'Brno', 'Other'],
     'Bulgaria': ['Sofia', 'Stara Zagora', 'Botevgrad', 'Other'],
     'Germany': ['Berlin', 'Nürnberg', 'Other'],
-    'Malta': ['Valletta', 'Marsaxlokk', 'Other'],
+    'Malta': ['Valletta', 'Marsaxlokk', 'Msida', 'Other'],
     'UK': ['London', 'Southampton', 'Other'],
     'other': ['Other']
   };
@@ -29,7 +29,7 @@ export class RegisterComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', Validators.required],
       attending: [false], 
-      group: [0], 
+      group: [1], 
       accomodation: [''],
       role: ['guest'],
       photoURL: [''], // Optional field for direct URL input

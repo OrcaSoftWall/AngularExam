@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-
+  errorMessage: string | null = null; // Property to hold error messages
+  
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -34,7 +35,21 @@ export class LoginComponent {
         })
         .catch((error) => {
           console.log('Login failed', error);
+          this.errorMessage = this.getErrorMessage(error.code);
         });
+    }
+  }
+
+  getErrorMessage(errorCode: string): string {
+    switch (errorCode) {
+      case 'auth/user-not-found':
+        return 'No user found with this email.';
+      case 'auth/wrong-password':
+        return 'Incorrect password.';
+      case 'auth/invalid-email':
+        return 'Invalid email address.';
+      default:
+        return 'An error occurred. Please try again.';
     }
   }
 }

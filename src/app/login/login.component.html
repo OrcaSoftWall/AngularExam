@@ -5,13 +5,21 @@
     <div>
       <label for="email">Email:</label>
       <input type="email" formControlName="email" id="email">
-      <!-- Display errors for email -->
+      <div *ngIf="loginForm.get('email')?.errors?.['required']" class="error-message">
+        Email is required.
+      </div>
+      <div *ngIf="loginForm.get('email')?.errors?.['email']" class="error-message">
+        Not a valid email.
+      </div>
     </div>
     <div>
       <label for="password">Password:</label>
       <input type="password" formControlName="password" id="password">
-      <!-- Display errors for password -->
+      <div *ngIf="loginForm.get('password')?.errors?.['required']" class="error-message">
+        Password is required.
+      </div>
     </div>
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> <!-- Display error message -->
   </form>
   
