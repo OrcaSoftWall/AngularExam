@@ -21,5 +21,6 @@
     </div>
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
     <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> <!-- Display error message -->
+    <p>Not registered yet? <a routerLink="/register">→ Register</a></p>
   </form>
   
