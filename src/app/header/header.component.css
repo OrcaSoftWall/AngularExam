@@ -3,7 +3,7 @@ header {
   position: relative;
   height: 95vh; 
   width: 100%;
-  transition: height 5s ease-in-out;
+  transition: height 2s ease-in-out;
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@ header.shrunk {
   height: 100%;
   object-fit: cover;
   object-position: center center; /* Center the image initially */
-  transition: object-position 5s ease-in-out, height 5s ease-in-out; /* Smooth transition for object position and height */
+  transition: object-position 2s ease-in-out, height 2s ease-in-out; /* Smooth transition for object position and height */
 }
 
 

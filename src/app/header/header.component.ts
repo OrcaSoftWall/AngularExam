@@ -49,7 +49,7 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HeaderService } from '../services/header.service';
-import { Router, NavigationEnd, Event as RouterEvent } from '@angular/router';
+import { Router, NavigationEnd, Event as RouterEvent, NavigationStart, NavigationCancel, NavigationError } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
@@ -64,22 +64,74 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private headerService: HeaderService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.routerSubscription = this.router.events.pipe(
-      filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      // Adjust header based on whether the route is the home page
-      const isHome = event.urlAfterRedirects === '/';
-      this.headerService.setShrunk(!isHome);
+  // ngOnInit(): void {
+  //   this.routerSubscription = this.router.events.pipe(
+  //     filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+  //   ).subscribe((event: NavigationEnd) => {
+  //     // Adjust header based on whether the route is the home page
+  //     const isHome = event.urlAfterRedirects === '/';
+  //     console.log("isHome:  ", isHome)
+  //     this.headerService.setShrunk(!isHome);
 
-      // Delay shrinking if it's the home page
-      if (isHome) {
-        setTimeout(() => this.headerService.setShrunk(true), 2000);
-      }
-    });
+  //     // Delay shrinking if it's the home page
+  //     if (isHome) {
+  //       setTimeout(() => this.headerService.setShrunk(true), 2000);
+  //       console.log("setTimeOut is Activated")
+  //     }
+  //   });
+
+  //   this.headerService.shrunk.subscribe(shrunk => {
+  //     this.isShrunk = shrunk;
+  //     console.log("this.isShrunk:  ", this.isShrunk)
+  //   });
+  // }
+
+  ngOnInit(): void {
+    // Manually check the initial route
+  const initialUrl = this.router.url;
+  const isHomeInitial = initialUrl === '/';
+  console.log("Initial URL: ", initialUrl);
+  this.headerService.setShrunk(!isHomeInitial);
+  if (isHomeInitial) {
+    setTimeout(() => {
+      this.headerService.setShrunk(true);
+      console.log("Initial setTimeOut is Activated");
+    }, 2000);
+  }
+
+  // Subscribe to router events
+  this.routerSubscription = this.router.events.subscribe(event => {
+    if (event instanceof NavigationStart) {
+      console.log("NavigationStart:", event.url);
+    } else if (event instanceof NavigationEnd) {
+      console.log("NavigationEnd:", event.urlAfterRedirects);
+    } else if (event instanceof NavigationCancel) {
+      console.log("NavigationCancel:", event.url);
+    } else if (event instanceof NavigationError) {
+      console.log("NavigationError:", event.error);
+    }
+  });
+
+    this.routerSubscription.add(
+      this.router.events.pipe(
+        filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        // Adjust header based on whether the route is the home page
+        const isHome = event.urlAfterRedirects === '/';
+        console.log("isHome:  ", isHome)
+        this.headerService.setShrunk(!isHome);
+
+        // Delay shrinking if it's the home page
+        if (isHome) {
+          setTimeout(() => this.headerService.setShrunk(true), 2000);
+          console.log("setTimeOut is Activated")
+        }
+      })
+    );
 
     this.headerService.shrunk.subscribe(shrunk => {
       this.isShrunk = shrunk;
+      console.log("this.isShrunk:  ", this.isShrunk)
     });
   }
 
