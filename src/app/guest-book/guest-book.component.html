@@ -24,20 +24,21 @@
 
 <app-header></app-header>
 <app-nav></app-nav>
+<div class="wrapper">
+  <h1>Guest Book</h1>
+  <div class="guest-book-container">
+      <div class="message-to-guests">
+          Dear guests, Please share with us and the rest of the guests your thoughts, wishes and greetings!
+      </div>
+    <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
+      <textarea formControlName="text" placeholder="Write your wish..."></textarea>
+      <button type="submit">{{ editingEntryId ? 'Update' : 'Post' }}</button>
+    </form>
 
-<div class="guest-book-container">
-  <h2>Guest Book</h2>
-    <div class="message-to-guests">
-        Dear guests, Please share with us and the rest of the guests your thoughts, wishes and greetings!
+    <div *ngFor="let entry of guestBookEntries$ | async" class="entry">
+      <p><strong>{{ entry.authorName }}:</strong> {{ entry.text }}</p>
+      <button *ngIf="canEdit(entry)" (click)="editEntry(entry)">Edit</button>
+      <button *ngIf="canEdit(entry)" (click)="entry.id ? deleteEntry(entry.id) : null">Delete</button>
     </div>
-  <form [formGroup]="entryForm" (ngSubmit)="onSubmit()">
-    <textarea formControlName="text" placeholder="Write your wish..."></textarea>
-    <button type="submit">{{ editingEntryId ? 'Update' : 'Post' }}</button>
-  </form>
-
-  <div *ngFor="let entry of guestBookEntries$ | async" class="entry">
-    <p><strong>{{ entry.authorName }}:</strong> {{ entry.text }}</p>
-    <button *ngIf="canEdit(entry)" (click)="editEntry(entry)">Edit</button>
-    <button *ngIf="canEdit(entry)" (click)="entry.id ? deleteEntry(entry.id) : null">Delete</button>
   </div>
 </div>

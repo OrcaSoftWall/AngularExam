@@ -1,8 +1,22 @@
+.wrapper {
+  margin: 0;
+  padding: 0;
+  background: url('https://firebasestorage.googleapis.com/v0/b/softuniangular2024.appspot.com/o/event_photos%2Fguest1.png?alt=media&token=f8475fb1-1e1d-4569-946d-9c1ca7e4d6b3');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  min-height:72vh;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px;
+}
+
 .guest-book-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background: #f9f9f9;
+    background: #f9f9f9b8;
     border: 1px solid #ddd;
     border-radius: 8px;
   }
