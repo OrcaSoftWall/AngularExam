@@ -1,3 +1,13 @@
+.wrapper {
+  margin: 0;
+  padding: 0;
+  background: url('https://firebasestorage.googleapis.com/v0/b/softuniangular2024.appspot.com/o/event_photos%2Fbackground-menu-washed-repeatable.png?alt=media&token=e946620e-5e2a-4829-b086-2fc4b427b88e');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  min-height:72vh;
+}
+
+
 .row {
     display: flex;
     flex-wrap: wrap;
