@@ -1,3 +1,12 @@
+.guests-container {
+    margin: 0;
+    padding: 0;
+    background: url('https://firebasestorage.googleapis.com/v0/b/softuniangular2024.appspot.com/o/event_photos%2Fbackground-guestlist.png?alt=media&token=d733a275-3aee-4f49-b48d-0e20d76a432b');
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    min-height:72vh;
+  }
+
 /* Container for all guest cards */
 .guests-container {
     display: flex;
@@ -12,7 +21,7 @@
     transition: 0.3s;
     width: 40%; /* Adjust width as necessary */
     margin: 10px 0;
-    background: #f9ffd988;
+    background: rgb(249 255 217 / 80%);
     padding: 20px;
     border-radius: 8px;
     display: flex;
