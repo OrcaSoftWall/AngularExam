@@ -16,7 +16,7 @@ h1 {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background: #f9f9f9b8;
+    background: rgba(249,249,249,0.84);
     border: 1px solid #ddd;
     border-radius: 8px;
   }
