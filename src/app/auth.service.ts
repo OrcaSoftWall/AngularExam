@@ -175,6 +175,11 @@ export class AuthService {
       })
     );
   }
+
+  resetPassword(email: string): Promise<void> {
+    return this.afAuth.sendPasswordResetEmail(email);
+  }
+  
 }
 
 

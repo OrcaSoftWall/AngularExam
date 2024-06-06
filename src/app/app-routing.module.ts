@@ -43,11 +43,13 @@ import { GuestsComponent } from './guests/guests.component';
 import { EditGuestComponent } from './edit-guest/edit-guest.component';
 import { GuestBookComponent } from './guest-book/guest-book.component';
 import { BrideGroomIntroComponent } from './bride-groom-intro/bride-groom-intro.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'bride-groom', component: BrideGroomIntroComponent },
   { path: 'event-details/:id', component: EventDetailsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
