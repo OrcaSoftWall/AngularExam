@@ -179,6 +179,20 @@ export class AuthService {
   resetPassword(email: string): Promise<void> {
     return this.afAuth.sendPasswordResetEmail(email);
   }
+
+  async changePassword(oldPassword: string, newPassword: string): Promise<void> {
+    const user = await this.afAuth.currentUser;
+    if (!user) throw new Error('No user is logged in!');
+  
+    const credential = firebase.auth.EmailAuthProvider.credential(
+      user.email!,
+      oldPassword
+    );
+  
+    await user.reauthenticateWithCredential(credential);
+    return user.updatePassword(newPassword);
+  }
+
   
 }
 

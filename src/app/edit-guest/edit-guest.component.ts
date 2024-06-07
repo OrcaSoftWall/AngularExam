@@ -14,6 +14,7 @@ import { finalize } from 'rxjs/operators';
 export class EditGuestComponent implements OnInit {
   editForm: FormGroup;
   selectedFile?: File;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +30,9 @@ export class EditGuestComponent implements OnInit {
       accomodation: [''],
       photoURL: [''], // Optional field for direct URL input
       country: ['', Validators.required],
-      city: ['', Validators.required]
+      city: ['', Validators.required],
+      oldPassword: [''], // New field
+      newPassword: [''],  // New field
     });
   }
 
@@ -38,10 +41,13 @@ export class EditGuestComponent implements OnInit {
       if (uid) {
         this.guestService.getGuestById(uid).subscribe(guest => {
           if (guest) {
-            console.log("guest to be amended",guest)
+            console.log("guest to be amended: ",guest)
             this.editForm.patchValue(guest);
+            if (guest.finalPhotoURL) {
+              this.editForm.patchValue({ photoURL: guest.finalPhotoURL });
+            }
           } else {
-            console.error('No guest data available');
+            console.error('No guest data available!');
           }
         });
       }
@@ -86,13 +92,36 @@ export class EditGuestComponent implements OnInit {
       finalPhotoURL: photoURL
     };
 
-    this.guestService.updateGuest(uid, updatedData).then(() => {
-      console.log('Profile updated successfully');
+  //   this.guestService.updateGuest(uid, updatedData).then(() => {
+  //     console.log('Profile updated successfully');
+  //     this.router.navigate(['/dashboard']);
+  //   }).catch(error => {
+  //     console.error('Error updating profile:', error);
+  //   });
+  //}
+
+
+  // new parts for guest password update
+  this.guestService.updateGuest(uid, updatedData).then(() => {
+    if (this.editForm.value.oldPassword && this.editForm.value.newPassword) {
+      this.changePassword(this.editForm.value.oldPassword, this.editForm.value.newPassword);
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
+  }).catch(error => {
+    console.error('Error updating profile:', error);
+    this.errorMessage = error.message;
+  });
+  }
+
+  private changePassword(oldPassword: string, newPassword: string): void {
+    this.authService.changePassword(oldPassword, newPassword).then(() => {
+      console.log('Password changed successfully');
       this.router.navigate(['/dashboard']);
     }).catch(error => {
-      console.error('Error updating profile:', error);
+      console.error('Error changing password:', error);
+      this.errorMessage = error.message;
     });
   }
 }
-
 

@@ -7,8 +7,7 @@
     <input type="text" formControlName="name" id="name" />
   </div>
   <div>
-    <label for="attending">Attending:</label>
-    <input type="checkbox" formControlName="attending" />
+    <label for="attending">Are you Attending? <input type="checkbox" formControlName="attending"/></label>
   </div>
   <div>
     <label for="group">Number of people:</label>
@@ -34,5 +33,16 @@
     <label for="photoURL">or Photo URL:</label>
     <input type="text" formControlName="photoURL" />
   </div>
+
+   <!-- Password Change Fields -->
+   <div>
+    <label for="oldPassword">Old Password:</label>
+    <input type="password" formControlName="oldPassword" id="oldPassword" placeholder="Leave empty if you don't want to change password" />
+  </div>
+  <div>
+    <label for="newPassword">New Password:</label>
+    <input type="password" formControlName="newPassword" id="newPassword" placeholder="Leave empty if you don't want to change password" />
+  </div>
+
   <button type="submit" [disabled]="!editForm.valid">Save Changes</button>
 </form>

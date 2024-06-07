@@ -38,9 +38,9 @@ h1 {
   }
   
   input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    margin-top: 2px;
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
   }
   
   /* Style for displaying input errors */
@@ -83,4 +83,4 @@ h1 {
     background-color: #ccc;
     cursor: not-allowed;
   }
-  
+ 
