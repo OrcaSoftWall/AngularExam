@@ -1,6 +1,7 @@
 <app-header />
 <app-nav />
 <div class="guests-container">
+    <h1>Guests</h1>
     <div *ngFor="let guest of guests$ | async" class="guest-card">
         <img [src]="guest.finalPhotoURL" alt="{{ guest.name }}" class="guest-photo">
         <div class="guest-info">

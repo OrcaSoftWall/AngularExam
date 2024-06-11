@@ -120,6 +120,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  getUserById(uid: string): Observable<Guest | undefined> {
+    return this.firestore.doc<Guest>(`guests/${uid}`).valueChanges();
+  }
+
+
   getCurrentUserName(): Observable<string | null> {
     return this.afAuth.authState.pipe(
       switchMap((user) => {

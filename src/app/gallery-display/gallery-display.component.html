@@ -1,0 +1,56 @@
+<!-- <app-header/>
+<app-nav/>
+<h1>Gallery</h1>
+<div class="gallery-container">
+  <div *ngFor="let photo of photos$ | async" class="gallery-item">
+    <img [src]="photo.photoURL" alt="{{ photo.title }}" class="gallery-photo" />
+    <div class="gallery-details">
+      <h3>{{ photo.title }}</h3>
+      <p>{{ photo.description }}</p>
+      <div class="likes">
+      <button *ngIf="photo.id" (click)="toggleLike(photo.id)">
+         {{ photo.liked ? 'Unlike' : 'Like' }}
+      </button>
+      <p>Like ({{ photo.likes || 0 }})</p>
+    </div>
+      <div class="comments">
+        <h4>Comments</h4>
+        <div *ngFor="let comment of photo.comments">
+          <p>{{ comment.text }} - <strong>{{ comment.authorName }}</strong></p>
+        </div>
+        <form *ngIf="photo.id" (ngSubmit)="addComment(photo.id, commentText.value)">
+            <textarea type="text" #commentText placeholder="Add a comment"></textarea> 
+          <button type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<app-header/>
+<app-nav/>
+<h1>Gallery</h1>
+<div class="gallery-container container">
+  <div *ngFor="let photo of photos$ | async" class="gallery-item">
+    <img [src]="photo.photoURL" alt="{{ photo.title }}" class="gallery-photo"/>
+    <div class="gallery-details">
+      <h3>{{ photo.title }}</h3>
+      <p>{{ photo.description }}</p>
+      <div class="gallery-actions">
+        <button class="btn-primary" (click)="toggleLike(photo.id)">Like ({{ photo.likes || 0 }})</button>
+        <p>{{ photo.liked ? 'Liked' : '' }}</p>
+      </div>
+      <div class="comments-section">
+        <h4>Comments</h4>
+        <div *ngFor="let comment of photo.comments || []">
+          <p>{{ comment.text }} - <strong>{{ comment.authorName }}</strong></p>
+        </div>
+        <form *ngIf="photo.id" (ngSubmit)="addComment(photo.id, commentText.value)">
+          <textarea #commentText type="text" placeholder="Add a comment" ></textarea>
+          <button class="btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

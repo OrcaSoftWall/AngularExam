@@ -44,6 +44,8 @@ import { EditGuestComponent } from './edit-guest/edit-guest.component';
 import { GuestBookComponent } from './guest-book/guest-book.component';
 import { BrideGroomIntroComponent } from './bride-groom-intro/bride-groom-intro.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { GalleryUploadComponent } from './gallery-upload/gallery-upload.component';
+import { GalleryDisplayComponent } from './gallery-display/gallery-display.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -60,6 +62,8 @@ const routes: Routes = [
   { path: 'guests', component: GuestsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'edit-guest', component: EditGuestComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'guest-book', component: GuestBookComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
+  { path: 'gallery-upload', component: GalleryUploadComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer'] } },
+  { path: 'gallery-display', component: GalleryDisplayComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: '**', redirectTo: '/404' },
 ];
 

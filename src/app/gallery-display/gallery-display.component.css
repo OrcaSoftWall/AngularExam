@@ -1,0 +1,105 @@
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Headers */
+  h1, h2, h3 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    background-color: rgb(98, 110, 34);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: rgb(49, 55, 17);
+  }
+  
+h1 {
+    text-align: center;
+}
+
+.gallery-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 20px;
+  flex-direction: column;
+}
+
+.gallery-item {
+  flex: 1 1 calc(33.333% - 40px);
+  margin: 20px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-details {
+  padding: 15px;
+}
+
+.gallery-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comments-section {
+  margin-top: 20px;
+}
+
+.comments-section p {
+    margin-top: 5px;
+    border-top: 1px solid gray;
+    font: italic 12px/30px Georgia, serif; 
+  }
+
+.comments-section form {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding-top:15px;
+  /* border-top: 3px solid gray; */
+}
+
+.comments-section textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.comments-section button {
+  @apply .btn-primary;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        flex-direction: column;
+      }
+}

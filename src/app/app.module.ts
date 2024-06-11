@@ -35,6 +35,8 @@ import { EditGuestComponent } from './edit-guest/edit-guest.component';
 import { GuestBookComponent } from './guest-book/guest-book.component';
 import { BrideGroomIntroComponent } from './bride-groom-intro/bride-groom-intro.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {GalleryUploadComponent} from './gallery-upload/gallery-upload.component';
+import {GalleryDisplayComponent} from './gallery-display/gallery-display.component';
 // import { environment } from '../environments/environment';
 
 @NgModule({
@@ -57,7 +59,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     EditGuestComponent,
     GuestBookComponent,
     BrideGroomIntroComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    GalleryUploadComponent,
+    GalleryDisplayComponent,
   ],
   imports: [
     BrowserModule,
