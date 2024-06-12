@@ -45,7 +45,7 @@
     <a *ngIf="!(userService.isLogged | async)" routerLink="/login">Login</a>
     <a *ngIf="!(userService.isLogged | async)" routerLink="/register">Register</a>
     <a *ngIf="userService.isLogged | async" routerLink="/guest-book">Guest book</a>
-    <a *ngIf="userService.isLogged | async" routerLink="/gallery-upload">Upload photos</a>
+    <a *ngIf="(userService.isLogged | async) && (isAdministrator$ | async)" routerLink="/gallery-upload">Upload photos</a>
     <a *ngIf="userService.isLogged | async" routerLink="/gallery-display">Gallery</a>
     <!-- <a *ngIf="!(userService.isLogged | async)"routerLink="/bride-groom">Bride & Groom</a> -->
     <a *ngIf="(userService.isLogged | async)"routerLink="/bride-groom">Bride & Groom</a>
