@@ -62,7 +62,7 @@ const routes: Routes = [
   { path: 'guests', component: GuestsComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'edit-guest', component: EditGuestComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'guest-book', component: GuestBookComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
-  { path: 'gallery-upload', component: GalleryUploadComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer'] } },
+  { path: 'gallery-upload', component: GalleryUploadComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: 'gallery-display', component: GalleryDisplayComponent, canActivate: [AuthGuardService],data: { roles: ['groom', 'bride', 'organizer', 'guest'] } },
   { path: '**', redirectTo: '/404' },
 ];
