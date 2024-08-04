@@ -81,6 +81,7 @@ export class GalleryUploadComponent implements OnInit {
   selectedFile: File | null = null; // Allow null as a possible value
   isAdmin: boolean = false;
   currentUserId: string | null = null;
+  currentUserName: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -102,6 +103,9 @@ export class GalleryUploadComponent implements OnInit {
     });
     this.authService.getCurrentUserId().subscribe((userId) => {
       this.currentUserId = userId;
+    });
+    this.authService.getCurrentUserName().subscribe((name) => {
+      this.currentUserName = name;
     });
   }
 
@@ -125,6 +129,7 @@ export class GalleryUploadComponent implements OnInit {
             const photoData = {
               ...formValue,
               authorId: this.currentUserId,
+              authorName: this.currentUserName,
               photoURL: downloadURL,
               timestamp: new Date()
             };
