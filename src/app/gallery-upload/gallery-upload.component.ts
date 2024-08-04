@@ -80,6 +80,7 @@ export class GalleryUploadComponent implements OnInit {
   uploadForm: FormGroup;
   selectedFile: File | null = null; // Allow null as a possible value
   isAdmin: boolean = false;
+  currentUserId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -98,6 +99,9 @@ export class GalleryUploadComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isAdministrator().subscribe(isAdmin => {
       this.isAdmin = isAdmin;
+    });
+    this.authService.getCurrentUserId().subscribe((userId) => {
+      this.currentUserId = userId;
     });
   }
 
@@ -120,6 +124,7 @@ export class GalleryUploadComponent implements OnInit {
             const formValue = this.uploadForm.value;
             const photoData = {
               ...formValue,
+              authorId: this.currentUserId,
               photoURL: downloadURL,
               timestamp: new Date()
             };
