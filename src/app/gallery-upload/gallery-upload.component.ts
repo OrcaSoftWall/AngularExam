@@ -91,8 +91,10 @@ export class GalleryUploadComponent implements OnInit {
     private router: Router // Inject Router
   ) {
     this.uploadForm = this.fb.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
+      title: [''],
+      description: [''],
+      // title: ['', Validators.required],
+      // description: ['', Validators.required],
       photoURL: ['']
     });
   }
