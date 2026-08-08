@@ -44,7 +44,7 @@ h1 {
   }
   
   /* Style for displaying input errors */
-  div *ngIf {
+  div .error-message {
     color: #d9534f; /* Bootstrap 'danger' color */
     font-size: 0.9rem;
   }
